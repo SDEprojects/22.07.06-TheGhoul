@@ -23,4 +23,15 @@ public class Game {
 
         }
     }
+
+    public void gameSummary() {
+        System.out.println("========================================================= \n" +
+                "“The Ghoul” is a game of adventure, danger, and deception. \n" +
+                "You, as the bravest knight, have been tasked by your king  \n" +
+                "to kill a demonic creature and retrieve a sacred stone. \n" +
+                "Will you succeed, or does destiny have other plans for you? \n" +
+                "=========================================================");
+    }
 }
+
+

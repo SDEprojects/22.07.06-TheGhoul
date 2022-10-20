@@ -5,24 +5,25 @@ import java.util.Scanner;
 public class Game {
     //fields
     private final Scanner scanner = new Scanner(System.in);
-    private boolean userInput = false;
 
     //method
     public void newGame() {
 
-        while (!userInput) {
-            System.out.print("\n Enter NEW GAME to play : \n");
-            String input = scanner.nextLine().toLowerCase();
-            if (input.matches("new game")) {
-                System.out.println("let's play");
+        while (true) {
+            System.out.print("\n Enter 'new game' to play or 'quit game' to exit: \n");
+            String input = scanner.nextLine();
+            if (input.equalsIgnoreCase("new game")) {
+                System.out.println("let's play!");
                 // --Intro here--
+            } else if (input.equalsIgnoreCase("quit game")) {
+                System.out.println("\n Thanks for playing!");
+                System.exit(0);
             } else {
-                System.out.println("wrong input");
-                userInput = true;
+                System.out.println("wrong input.");
             }
-
         }
     }
+
 
     public void gameSummary() {
         System.out.println("========================================================= \n" +

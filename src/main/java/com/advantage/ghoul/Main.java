@@ -7,5 +7,7 @@ class Main {
         splash.display();
         game.gameSummary();
         game.newGame();
+
+
     }
 }

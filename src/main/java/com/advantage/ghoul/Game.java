@@ -1,20 +1,27 @@
 package com.advantage.ghoul;
 
+import com.apps.util.Console;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class Game {
     //fields
+    Intro story = new Intro();
     private final Scanner scanner = new Scanner(System.in);
 
     //method
     public void newGame() {
+        gameSummary();
 
         while (true) {
             System.out.print("\n Enter 'new game' to play or 'quit game' to exit: \n");
             String input = scanner.nextLine();
             if (input.equalsIgnoreCase("new game")) {
-                System.out.println("let's play!");
-                // --Intro here--
+                story.introStory();
+                break;
             } else if (input.equalsIgnoreCase("quit game")) {
                 System.out.println("\n Thanks for playing!");
                 System.exit(0);
@@ -24,14 +31,15 @@ public class Game {
         }
     }
 
-
     public void gameSummary() {
-        System.out.println("========================================================= \n" +
-                "“The Ghoul” is a game of adventure, danger, and deception. \n" +
-                "You, as the bravest knight, have been tasked by your king  \n" +
-                "to kill a demonic creature and retrieve a sacred stone. \n" +
-                "Will you succeed, or does destiny have other plans for you? \n" +
-                "=========================================================");
+        try {
+            Files.lines(Path.of("doc", "gameSummary.txt")).
+                    forEach(line -> {
+                        System.out.println("\033[33m" + line + "\033[0m");
+                    });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

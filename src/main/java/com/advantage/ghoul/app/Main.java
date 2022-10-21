@@ -16,15 +16,7 @@ public class Main {
         Splashscreen splash = new Splashscreen();
         Game game = new Game();
         splash.display();
-        game.gameSummary();
         game.newGame();
-//        JSONParser parser=new JSONParser();
-//        FileReader reader=new FileReader("res/Item.txt");
-//        Object obj=parser.parse(reader);
-//        System.out.println(obj);
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        Object emp = objectMapper.readValue(obj);
-//        System.out.println(emp);
-    }
 
+    }
 }

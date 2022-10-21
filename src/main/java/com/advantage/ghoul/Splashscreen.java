@@ -27,7 +27,6 @@ public class Splashscreen {
 
     public void display(){
         System.out.println(GREEN + splashArt);
-        System.out.println("\n\nWelcome!");
         System.out.println(RESET);
    }
 }

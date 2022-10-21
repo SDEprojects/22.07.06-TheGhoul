@@ -2,8 +2,13 @@ package com.advantage.ghoul;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import java.io.FileReader;
+import java.io.IOException;
 
 import java.util.List;
+
 
 class Item {
     private String name;
@@ -54,19 +59,30 @@ class Item {
                 + ", description=" + getDescription();
     }
 
-    public static void main(String[] args) {
+// for testing purpose will be release
+    public static void main(String[] args) throws IOException, ParseException {
         Item sword = new Item("sword", "secret room", "divine sword");
         sword.useItem();
 
+        JSONParser parser=new JSONParser();
+        FileReader reader=new FileReader("res/Item.txt");
+
+
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            String items = "[{\"name\":\"Library Key\",\"location\":\"floor3\",\"description\":\"large black key\"}," +
-                    "{\"name\":\"Special Key\",\"location\":\"main room first floor\",\"description\":\"special gold key\"}]";
+            Object obj=parser.parse(reader);
+            System.out.println(obj.getClass().getSimpleName());
+            String items = obj.toString();
+            System.out.println(items.getClass().getSimpleName());
 
-            List<Item> itemList = objectMapper.readValue(items, new TypeReference<List<Item>>(){});
-            System.out.println(itemList);
+            List<Item> listItem = objectMapper.readValue(items, new TypeReference<List<Item>>(){});
+            System.out.println(listItem);
+            System.out.println(listItem.get(0).getName());
+
         }catch (final Exception e){
             e.printStackTrace();
         }
+
+
     }
 }

@@ -1,21 +1,23 @@
 package com.advantage.ghoul;
 
+import java.io.Console;
 import java.util.Scanner;
 
 public class Game {
     //fields
+    Intro story = new Intro();
     private final Scanner scanner = new Scanner(System.in);
 
     //method
     public void newGame() {
-
+// TODO: Clear console and begin story line when 'new game' is entered
         while (true) {
             System.out.print("\n Enter 'new game' to play or 'quit game' to exit: \n");
             String input = scanner.nextLine();
             if (input.equalsIgnoreCase("new game")) {
-                System.out.println("let's play!");
-                // --Intro here--
-            } else if (input.equalsIgnoreCase("quit game")) {
+                //System.out.println("let's play!");
+                story.introStory();
+            } else if (input.matches("quit game")) {
                 System.out.println("\n Thanks for playing!");
                 System.exit(0);
             } else {
@@ -23,7 +25,6 @@ public class Game {
             }
         }
     }
-
 
     public void gameSummary() {
         System.out.println("========================================================= \n" +

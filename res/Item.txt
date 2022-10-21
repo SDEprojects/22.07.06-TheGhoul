@@ -1,0 +1,4 @@
+{"name": "health portion",
+  "description": "restore HP",
+  "quantity": 1
+}

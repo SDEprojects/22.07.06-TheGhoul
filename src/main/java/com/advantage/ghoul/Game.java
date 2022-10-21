@@ -16,7 +16,7 @@ public class Game {
             System.out.print("\n Enter 'new game' to play or 'quit game' to exit: \n");
             String input = scanner.nextLine();
             if (input.equalsIgnoreCase("new game")) {
-                //System.out.println("let's play!");
+                System.out.println("let's play!");
                 Console.clear();
                 story.introStory();
             } else if (input.matches("quit game")) {

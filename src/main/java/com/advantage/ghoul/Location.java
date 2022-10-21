@@ -1,5 +1,6 @@
 package com.advantage.ghoul;
 
-class Intro {
+class Location {
+
 
 }

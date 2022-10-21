@@ -1,6 +1,7 @@
 package com.advantage.ghoul;
 
-import java.io.Console;
+import com.apps.util.Console;
+
 import java.util.Scanner;
 
 public class Game {
@@ -16,6 +17,7 @@ public class Game {
             String input = scanner.nextLine();
             if (input.equalsIgnoreCase("new game")) {
                 //System.out.println("let's play!");
+                Console.clear();
                 story.introStory();
             } else if (input.matches("quit game")) {
                 System.out.println("\n Thanks for playing!");

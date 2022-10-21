@@ -1,6 +1,7 @@
 package com.advantage.ghoul;
 
-import java.io.Console;
+import com.apps.util.Console;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,6 +9,7 @@ import java.nio.file.Path;
 class Intro {
 
     public void introStory() {
+
         try {
             Files.lines(Path.of("doc", "introStory.txt")).
                     forEach(line -> {

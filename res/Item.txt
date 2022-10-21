@@ -1,4 +1,38 @@
-{"name": "health portion",
-  "description": "restore HP",
-  "quantity": 1
-}
+[
+    {"name":"special key",
+    "location":"floor1",
+    "description":"Gold key. "
+    },
+    {"name":"library key",
+    "location":"floor1",
+    "description":"Black key that unlocks the library door."
+    },
+    {"name": "health portion",
+      "description": "restore HP",
+      "location": "floor2"
+    },
+    {"name": "ancient book",
+      "description": "Old book covered with dust. Reveals how to kill the ghoul.",
+      "location": "floor2"
+    },
+    {"name": "dagger",
+      "description": "Dagger with royal symbol. ",
+      "location": "floor3"
+    },
+    {"name": "ring",
+      "description": "The king's ring ",
+      "location": "floor3"
+    },
+    {"name": "divine sword",
+     "description": "Divine sword that only those with a divine spirit can wield ",
+     "location": "floor3"
+    },
+    {"name": "life stone",
+     "description": "The life stone helps keep all the crop and livestock alive in the land. ",
+     "location": "floor4"
+    },
+    {"name": "protection stone",
+     "description": "The protection stone protects the land from monsters and evil spirits ",
+     "location": "floor4"
+    }
+]

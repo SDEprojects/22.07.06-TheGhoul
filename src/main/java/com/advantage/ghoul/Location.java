@@ -10,6 +10,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 
 public class Location {
     String current;
@@ -24,6 +26,10 @@ public class Location {
     private List<Location> listRooms;
     private FileReader reader;
     private List<String> locationNameList=new ArrayList<>();
+    public static Scanner scanner = new Scanner(System.in);
+
+
+
     public Location() {
         super();
     }
@@ -38,7 +44,7 @@ public class Location {
         this.description = description;
     }
 
-    public void locationRead(){
+    public List<Location> locationRead(){
         try {
             reader=new FileReader("others/room1.txt");
             Object obj=parser.parse(reader);
@@ -52,7 +58,9 @@ public class Location {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        System.out.println(locationNameList);
+
+        return listRooms;
+
     }
 
     public String getCurrent() {
@@ -117,7 +125,65 @@ public class Location {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        Location abc=new Location();
-        abc.locationRead();
+        Location Locations = new Location();
+        List<Location> rooms = Locations.locationRead();
+        System.out.println(rooms);
+        String current = "library";
+        String directionInput;
+        String direction = "";
+
+
+
+        while(!current.equals("quit")){
+            System.out.println("You are in the " + current);
+            System.out.println("Where do you want to go next: ");
+            directionInput = scanner.nextLine().trim();
+            direction= directionInput.toLowerCase();
+            System.out.println(direction);
+
+
+            for(int i = 0; i < rooms.size(); i++){
+                if(current.equals(rooms.get(i).getCurrent())){
+
+                    if(direction.equals("north")){
+
+                        if(!rooms.get(i).getNorth().equals("No exit")) {
+                            current = rooms.get(i).getNorth();
+                        }else{
+                            System.out.println("Wrong way!");
+                        }
+
+                    } else if(direction.equals("south")){
+
+                        if(!rooms.get(i).getSouth().equals("No exit")) {
+                            current = rooms.get(i).getSouth();
+                        }else{
+                            System.out.println("Wrong way!");
+                        }
+                    }else if(direction.equals("east")){
+
+                        if(!rooms.get(i).getEast().equals("No exit")){
+                            current = rooms.get(i).getEast();
+                        }else{
+                            System.out.println("Wrong way!");
+                        }
+                    }else if(direction.equals("west")){
+
+                        if(!rooms.get(i).getWest().equals("No exit")){
+                            current = rooms.get(i).getEast();
+                        }else{
+                            System.out.println("Wrong way!");
+                        }
+                    }else{
+                        System.out.println("Please enter a valid entry");
+                    }
+
+                }
+            }
+
+
+        }
+
+
     }
 }

@@ -16,7 +16,7 @@ class Item {
     private String description;
 
     public Item() {
-        super();
+
     }
 
     public Item(String name, String location, String description){
@@ -53,30 +53,28 @@ class Item {
     public void useItem(){
         System.out.println("You have used the " + getName());
     }
-    @Override
-    public String toString(){
-        return "Item: name=" + getName() + ", location=" + getLocation()
-                + ", description=" + getDescription();
-    }
+//    @Override
+//    public String toString(){
+//        return "Item: name=" + getName() + ", location=" + getLocation()
+//                + ", description=" + getDescription();
+//    }
 
 // for testing purpose will be release
     public static void main(String[] args) throws IOException, ParseException {
-        Item sword = new Item("sword", "secret room", "divine sword");
-        sword.useItem();
 
         JSONParser parser=new JSONParser();
-        FileReader reader=new FileReader("res/Item.txt");
+        FileReader reader=new FileReader("others/Item.txttxt");
 
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             Object obj=parser.parse(reader);
-            System.out.println(obj.getClass().getSimpleName());
+//            System.out.println(obj.getClass().getSimpleName());
             String items = obj.toString();
-            System.out.println(items.getClass().getSimpleName());
+//            System.out.println(items.getClass().getSimpleName());
 
             List<Item> listItem = objectMapper.readValue(items, new TypeReference<List<Item>>(){});
-            System.out.println(listItem);
+//            System.out.println(listItem);
             System.out.println(listItem.get(0).getName());
 
         }catch (final Exception e){

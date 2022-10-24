@@ -36,7 +36,7 @@ public class GameControl {
 
     private void gameSummary() {
         try {
-            Files.lines(Path.of("doc", "gameSummary.txt")).
+            Files.lines(Path.of("others", "gameSummary.txt")).
                     forEach(line -> {
                         System.out.println(YELLOW + line);
                     });
@@ -47,7 +47,7 @@ public class GameControl {
 
     private void display() {
         try {
-            Files.lines(Path.of("doc", "TheGhoul.txt")).
+            Files.lines(Path.of("others", "TheGhoul.txt")).
                     forEach(line -> {
                         System.out.println(GREEN + line);
                     });

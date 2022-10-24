@@ -1,0 +1,38 @@
+[
+  {
+    "current": "library",
+    "north": "No exit",
+    "south": "kitchen",
+    "west": "No exit",
+    "east": "dining room",
+    "item": "special key",
+    "description": "wahahahahahah"
+  },
+  {
+    "current": "kitchen",
+    "north": "library",
+    "south": "No exit",
+    "west": "No exit",
+    "east": "No exit",
+    "item": "apple",
+    "description": "wahahahahahah"
+  },
+  {
+    "current": "dining room",
+    "north": "No exit",
+    "south": "garden",
+    "west": "No exit",
+    "east": "No exit",
+    "item": "pen",
+    "description": "wahahahahahah"
+  },
+  {
+    "current": "garden",
+    "north": "dining room",
+    "south": "No exit",
+    "west": "No exit",
+    "east": "No exit",
+    "item": "apple pen",
+    "description": "wahahahahahah"
+  }
+]

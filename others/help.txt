@@ -1,9 +1,7 @@
 =========================================================
 One Command word
 Type "quit" for existing the game
-Type "S" for saving the game
-Type "map" for checking the current position
-Type "run" for avoiding the fight with monster and back the previous room
+Type "save" for saving the game
 =========================================================
 Two Command words (Verb+Noun)
 "check" and "bag" for open item list
@@ -11,4 +9,6 @@ Two Command words (Verb+Noun)
 "go" and "direction" for moving different room
 "get" and "item's name" for put this item to the bag
 "use" and "item's name" for using the item
+"open" and "map" for checking the current position
+"run" and "back" for avoiding the fight with monster and back the previous room
 =========================================================

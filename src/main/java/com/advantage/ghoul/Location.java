@@ -1,5 +1,6 @@
 package com.advantage.ghoul;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -20,9 +21,9 @@ public class Location {
     String description;
     private JSONParser parser=new JSONParser();
     private ObjectMapper objectMapper = new ObjectMapper();
-    private List<Item> listItem;
+    private List<Location> listRooms;
     private FileReader reader;
-    private List<String> itemNameList=new ArrayList<>();
+    private List<String> locationNameList=new ArrayList<>();
     public Location() {
         super();
     }
@@ -39,21 +40,19 @@ public class Location {
 
     public void locationRead(){
         try {
-            reader=new FileReader("others/room1.txttxt");
+            reader=new FileReader("others/room1.txt");
             Object obj=parser.parse(reader);
-            String location=obj.toString();
-            Location abc = objectMapper.readValue(location, Location.class);
-//            System.out.println(abc);
-//            System.out.println(listItem);
-//            System.out.println(listItem);
-//            for(int i=0;i<listItem.size();i++){
-//                itemNameList.add(listItem.get(i).getName());
-//            }
+            String rooms = obj.toString();
+            listRooms = objectMapper.readValue(rooms, new TypeReference<>(){});
+            for(int i=0;i<listRooms.size();i++){
+                locationNameList.add(listRooms.get(i).getCurrent());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        System.out.println(locationNameList);
     }
 
     public String getCurrent() {

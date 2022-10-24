@@ -16,7 +16,7 @@ class ItemMenu {
     private String description;
     private JSONParser parser=new JSONParser();
     private ObjectMapper objectMapper = new ObjectMapper();
-    private List<Item> listItem;
+    private List<ItemMenu> listItem;
     private FileReader reader;
     private List<String> itemNameList=new ArrayList<>();
 

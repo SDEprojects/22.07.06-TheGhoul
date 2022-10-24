@@ -16,7 +16,6 @@ class Item {
     private String description;
 
     public Item() {
-
     }
 
     public Item(String name, String location, String description){
@@ -63,7 +62,7 @@ class Item {
     public static void main(String[] args) throws IOException, ParseException {
 
         JSONParser parser=new JSONParser();
-        FileReader reader=new FileReader("others/Item.txttxt");
+        FileReader reader=new FileReader("others/Item.txt");
 
 
         try {

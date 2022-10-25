@@ -63,6 +63,18 @@ public class Location {
 
     }
 
+    public Location getLocationByName(String name){
+        Location room = null;
+        List<Location> Locations = locationRead();
+        for(Location location: Locations){
+            if(location.getCurrent().equals(name)){
+                room = location;
+            }
+        }
+
+        return room;
+    }
+
     public String getCurrent() {
         return current;
     }
@@ -127,15 +139,13 @@ public class Location {
     public static void main(String[] args) throws FileNotFoundException {
         Location Locations = new Location();
         List<Location> rooms = Locations.locationRead();
-        System.out.println(rooms);
-        String current = "library";
+        String current = "lobby";
         String directionInput;
         String direction = "";
 
-
-
         while(!current.equals("quit")){
-            System.out.println("You are in the " + current);
+
+            System.out.println(Locations.getLocationByName(current).getDescription());
             System.out.println("Where do you want to go next: ");
             directionInput = scanner.nextLine().trim();
             direction= directionInput.toLowerCase();
@@ -149,6 +159,8 @@ public class Location {
 
                         if(!rooms.get(i).getNorth().equals("No exit")) {
                             current = rooms.get(i).getNorth();
+
+                            break;
                         }else{
                             System.out.println("Wrong way!");
                         }
@@ -157,6 +169,7 @@ public class Location {
 
                         if(!rooms.get(i).getSouth().equals("No exit")) {
                             current = rooms.get(i).getSouth();
+                            break;
                         }else{
                             System.out.println("Wrong way!");
                         }
@@ -164,6 +177,7 @@ public class Location {
 
                         if(!rooms.get(i).getEast().equals("No exit")){
                             current = rooms.get(i).getEast();
+                            break;
                         }else{
                             System.out.println("Wrong way!");
                         }
@@ -171,15 +185,19 @@ public class Location {
 
                         if(!rooms.get(i).getWest().equals("No exit")){
                             current = rooms.get(i).getEast();
+                            break;
                         }else{
                             System.out.println("Wrong way!");
                         }
                     }else{
                         System.out.println("Please enter a valid entry");
+                        current = current;
                     }
 
                 }
             }
+
+
 
 
         }

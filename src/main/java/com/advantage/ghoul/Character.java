@@ -6,10 +6,10 @@ class Character {
 
     private final int MAX_HP = 20;
     private int hp;
-    private final List<Item> inventory = new LinkedList<>();
+    private final List<ItemMenu> inventory = new LinkedList<>();
     private final int inventorySize = 10;
     private final Scanner inputItem = new Scanner(System.in);
-    private final Item item = new Item();
+    private final ItemMenu item = new ItemMenu();
     Scanner scanner = new Scanner(System.in);
 
 
@@ -31,7 +31,7 @@ class Character {
             System.out.println(inventory.toArray());
         }
     }
-
+    //add to inventory
     private void addItem() {
         System.out.println("Type get item to add it in your bag");
         String input = scanner.nextLine();
@@ -41,7 +41,7 @@ class Character {
         }
     }
 
-    private List<Item> getInventory() {
+    private List<ItemMenu> getInventory() {
         return inventory;
     }
 }

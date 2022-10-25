@@ -21,7 +21,7 @@ class Character {
         test.check_Inventory();
     }
 
-    // --refactor to implement item menu
+    // -refactor to implement item menu
     private void check_Inventory() {
         System.out.println("Enter check bag to see inventory");
         String input = scanner.nextLine();

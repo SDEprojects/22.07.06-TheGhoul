@@ -49,7 +49,6 @@ public class NewGame {
 //            commandInput.executeCommand(commandInput[0], objectName);
                 System.out.println("works");
             } else if (verbForMoving.contains(commandInput[0]) && direction.contains((commandInput[1]))){
-                System.out.println(movement.getLocationByName(Location.currentRoom).getDescription());
                 movement.moving(commandInput[1],rooms);
             }
             else {
@@ -71,6 +70,7 @@ public class NewGame {
         Console.clear();
         InputStream is = FileReading.getFileFromResourceAsStreamFortxt("IntroStory.txt");
         FileReading.printInputStream(is,true,Color.RED);
+        System.out.println(movement.getLocationByName("lobby").getDescription());
         gameLoop(isRunning);
     }
 }

@@ -73,6 +73,17 @@ class ItemMenu {
         return item;
     }
 
+    public void looking(String name){
+        String description;
+
+
+        ItemMenu item = new ItemMenu();
+        ItemMenu object = item.getItemByName(name);
+        description= object.getDescription();
+
+        System.out.println(description);
+    }
+
     public String getName() {
         return name;
     }

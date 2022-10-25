@@ -1,38 +1,65 @@
 [
+{
+    "current": "lobby",
+    "north": "basement",
+    "south": "outside",
+    "west": "No exit",
+    "east": "dining room",
+    "item": "No item",
+    "description": "You are in the lobby. The door to your north leads to the basement. the door to the east leads to the dining room"
+  },
+  {
+      "current": "basement",
+      "north": "No exit",
+      "south": "lobby",
+      "west": "No exit",
+      "east": "library",
+      "item": "key",
+      "description": "You are in the basement. The door to your east leads to the library."
+    },
   {
     "current": "library",
     "north": "No exit",
-    "south": "kitchen",
+    "south": "dining room",
     "west": "No exit",
-    "east": "dining room",
-    "item": "special key",
+    "east": "attic",
+    "item": "Ancient Book",
     "description": "wahahahahahah"
   },
   {
-    "current": "kitchen",
+    "current": "dinning room",
     "north": "library",
-    "south": "No exit",
+    "south": "master bedroom",
     "west": "No exit",
-    "east": "No exit",
-    "item": "apple",
+    "east": "cabinet room",
+    "item": "healing potion",
     "description": "wahahahahahah"
   },
   {
-    "current": "dining room",
-    "north": "No exit",
-    "south": "garden",
-    "west": "No exit",
-    "east": "No exit",
-    "item": "pen",
-    "description": "wahahahahahah"
-  },
-  {
-    "current": "garden",
+    "current": "master bedroom",
     "north": "dining room",
     "south": "No exit",
     "west": "No exit",
     "east": "No exit",
-    "item": "apple pen",
+    "item": "Divine Sword",
     "description": "wahahahahahah"
-  }
+  },
+  {
+    "current": "cabinet room",
+    "north": "attic",
+    "south": "No exit",
+    "west": "dinning room",
+    "east": "No exit",
+    "item": "ring",
+    "description": "wahahahahahah"
+  },
+  {
+      "current": "attic",
+      "north": "No exit",
+      "south": "cabinet room",
+      "west": "library",
+      "east": "No exit",
+      "item": "life stone",
+      "description": "wahahahahahah"
+    }
 ]

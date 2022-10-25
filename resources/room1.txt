@@ -23,7 +23,7 @@
     "south": "dining room",
     "west": "No exit",
     "east": "attic",
-    "item": "Ancient Book",
+    "item": "ancient book",
     "description": "wahahahahahah"
   },
   {

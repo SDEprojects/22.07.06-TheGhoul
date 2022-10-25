@@ -48,6 +48,10 @@ public class NewGame {
                 // create another file for the location then=>verbs.contains(command[0]) && (gameItems.ItemList().contains(objectName)||location)
 //            commandInput.executeCommand(commandInput[0], objectName);
                 System.out.println("works");
+                System.out.println(Location.currentRoom);
+               gameItems.looking(objectName);
+
+
             } else if (verbForMoving.contains(commandInput[0]) && direction.contains((commandInput[1]))){
                 movement.moving(commandInput[1],rooms);
             }

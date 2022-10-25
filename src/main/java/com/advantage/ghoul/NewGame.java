@@ -3,6 +3,7 @@ package com.advantage.ghoul;
 import com.apps.util.Console;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -11,14 +12,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class NewGame {
-    private final String YELLOW = "\033[33m";
-    private final String RESET = "\033[0m";
     private Character player = new Character();
     private Scanner inputValue = new Scanner(System.in);
     private String delimiter = "[ \t,.:;?!\"']+";
-    private List<String> verbs = new ArrayList<>(Arrays.asList("check", "look", "go", "get", "use", "open", "run"));
+    private List<String> verbs = new ArrayList<>(Arrays.asList("check", "look", "get", "use", "open"));
+    private List<String> verbForMoving=new ArrayList<>(Arrays.asList("go","run"));
+    private List<String> direction=new ArrayList<>(Arrays.asList("south","north","east","west","back"));
     private ItemMenu gameItems = new ItemMenu();
-    private boolean isRunning;
+    private boolean isRunning=false;
+    private Location movement=new Location();
     private String objectName;
 
     void gameLoop(boolean isRunning) {
@@ -37,11 +39,17 @@ public class NewGame {
                 help();
             } else if (commandInput[0].equals("save") && commandInput.length == 1) {
                 saving();
-            } else if (verbs.contains(commandInput[0]) && gameItems.itemList().contains(objectName)) {
+            }else if(commandInput[0].equals("quit")&& commandInput.length == 1){
+                isRunning=true;
+            }
+            else if (verbs.contains(commandInput[0]) && gameItems.itemList().contains(objectName)) {
                 // create another file for the location then=>verbs.contains(command[0]) && (gameItems.ItemList().contains(objectName)||location)
 //            commandInput.executeCommand(commandInput[0], objectName);
                 System.out.println("works");
-            } else {
+            } else if (verbForMoving.contains(commandInput[0]) && direction.contains((commandInput[1]))){
+                movement.moving(commandInput[1]);
+            }
+            else {
                 System.out.println(commandInput.length);
                 System.out.println("Invalid input. Please enter the 'verb' + 'name'. Type help for checking the command");
             }
@@ -53,26 +61,13 @@ public class NewGame {
 
     private void help() {
         Console.clear();
-        try {
-            Files.lines(Path.of("others", "help.txt")).
-                    forEach(line -> {
-                        System.out.println(YELLOW + line);
-                    });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        InputStream is = FileReading.getFileFromResourceAsStreamFortxt("help.txt");
+        FileReading.printInputStream(is,false,Color.RED);
     }
     void introStory() {
         Console.clear();
-        try {
-            Files.lines(Path.of("others", "introStory.txt")).
-                    forEach(line -> {
-                        System.out.println(YELLOW + line);
-//                        Console.pause(1000);
-                    });
-            gameLoop(isRunning);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        InputStream is = FileReading.getFileFromResourceAsStreamFortxt("IntroStory.txt");
+        FileReading.printInputStream(is,true,Color.RED);
+        gameLoop(isRunning);
     }
 }

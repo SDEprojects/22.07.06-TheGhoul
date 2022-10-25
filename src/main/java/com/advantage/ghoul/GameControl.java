@@ -1,9 +1,9 @@
 package com.advantage.ghoul;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class GameControl {
     private static final GameControl startGame = new GameControl();
@@ -35,26 +35,14 @@ public class GameControl {
     }
 
     private void gameSummary() {
-        try {
-            Files.lines(Path.of("others", "gameSummary.txt")).
-                    forEach(line -> {
-                        System.out.println(YELLOW + line);
-                    });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        InputStream summary = FileReading.getFileFromResourceAsStreamFortxt("gameSummary.txt");
+        FileReading.printInputStream(summary,false,RED);
     }
 
     private void display() {
-        try {
-            Files.lines(Path.of("others", "TheGhoul.txt")).
-                    forEach(line -> {
-                        System.out.println(GREEN + line);
-                    });
-            gameSummary();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        InputStream logo = FileReading.getFileFromResourceAsStreamFortxt("TheGhoul.txt");
+        FileReading.printInputStream(logo,false,RED);
+        gameSummary();
     }
 
     public static GameControl getStartGame() {

@@ -45,6 +45,7 @@ public class NewGame {
                 isRunning=true;
             }
             else if (verbs.contains(commandInput[0]) && gameItems.itemList().contains(objectName)) {
+
                 // create another file for the location then=>verbs.contains(command[0]) && (gameItems.ItemList().contains(objectName)||location)
 //            commandInput.executeCommand(commandInput[0], objectName);
                 System.out.println("works");

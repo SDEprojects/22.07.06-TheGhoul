@@ -5,10 +5,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import java.io.FileReader;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class ItemMenu {
     private String name;
@@ -17,7 +18,6 @@ class ItemMenu {
     private JSONParser parser=new JSONParser();
     private ObjectMapper objectMapper = new ObjectMapper();
     private List<ItemMenu> listItem;
-    private FileReader reader;
     private List<String> itemNameList=new ArrayList<>();
 
     //Ctor
@@ -33,8 +33,10 @@ class ItemMenu {
     //business function
     void itemMenuRead(){
         try {
-            reader=new FileReader("others/Item.txt");
-            Object obj=parser.parse(reader);
+            InputStream itemFile = FileReading.getFileFromResourceAsStreamFortxt("Item.txt");
+            String result = new BufferedReader(new InputStreamReader(itemFile))
+                    .lines().collect(Collectors.joining("\n"));
+            Object obj=parser.parse(result);
             String items = obj.toString();
             listItem = objectMapper.readValue(items, new TypeReference<>(){});
             for(int i=0;i<listItem.size();i++){
@@ -81,5 +83,9 @@ class ItemMenu {
                 + ", description=" + getDescription();
     }
 
+    public static void main(String[] args) {
+        ItemMenu abc=new ItemMenu();
+        abc.itemMenuRead();
+    }
 }
 

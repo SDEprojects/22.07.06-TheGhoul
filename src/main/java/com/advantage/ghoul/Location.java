@@ -109,7 +109,7 @@ public class Location {
                     currentRoom = currentRoom;
                 }
             }
-        }
+        }System.out.println(getLocationByName(Location.currentRoom).getDescription());
     }
 
     public String getCurrent() {

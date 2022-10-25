@@ -73,44 +73,40 @@ public class Location {
         return room;
     }
 
-    public void moving(String direction) {
-        Location Locations = new Location();
-        List<Location> rooms = Locations.locationRead();
-        System.out.println(Locations.getLocationByName(currentRoom).getDescription());
-
+    public void moving(String direction,List<Location> rooms) {
         for (int i = 0; i < rooms.size(); i++) {
-            if (current.equals(rooms.get(i).getCurrent())) {
+            if (currentRoom.equals(rooms.get(i).getCurrent())) {
                 if (direction.equals("north")) {
                     if (!rooms.get(i).getNorth().equals("No exit")) {
-                        current = rooms.get(i).getNorth();
+                        currentRoom = rooms.get(i).getNorth();
                         break;
                     } else {
                         System.out.println("Wrong way!");
                     }
                 } else if (direction.equals("south")) {
                     if (!rooms.get(i).getSouth().equals("No exit")) {
-                        current = rooms.get(i).getSouth();
+                        currentRoom = rooms.get(i).getSouth();
                         break;
                     } else {
                         System.out.println("Wrong way!");
                     }
                 } else if (direction.equals("east")) {
                     if (!rooms.get(i).getEast().equals("No exit")) {
-                        current = rooms.get(i).getEast();
+                        currentRoom = rooms.get(i).getEast();
                         break;
                     } else {
                         System.out.println("Wrong way!");
                     }
                 } else if (direction.equals("west")) {
                     if (!rooms.get(i).getWest().equals("No exit")) {
-                        current = rooms.get(i).getEast();
+                        currentRoom = rooms.get(i).getEast();
                         break;
                     } else {
                         System.out.println("Wrong way!");
                     }
                 } else {
                     System.out.println("Please enter a valid entry");
-                    current = current;
+                    currentRoom = currentRoom;
                 }
             }
         }

@@ -27,7 +27,7 @@
     "description": "wahahahahahah"
   },
   {
-    "current": "dinning room",
+    "current": "dining room",
     "north": "library",
     "south": "master bedroom",
     "west": "No exit",

@@ -7,7 +7,7 @@
     "location":"floor1",
     "description":"Black key that unlocks the library door."
     },
-    {"name": "health portion",
+    {"name": "healing potion",
       "description": "restore HP",
       "location": "floor2"
     },

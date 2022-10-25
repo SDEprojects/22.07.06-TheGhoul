@@ -31,7 +31,7 @@ class ItemMenu {
         this.description = description;
     }
     //business function
-    void itemMenuRead(){
+    public List<ItemMenu> itemMenuRead(){
         try {
             InputStream itemFile = FileReading.getFileFromResourceAsStreamFortxt("Item.txt");
             String result = new BufferedReader(new InputStreamReader(itemFile))
@@ -39,18 +39,49 @@ class ItemMenu {
             Object obj=parser.parse(result);
             String items = obj.toString();
             listItem = objectMapper.readValue(items, new TypeReference<>(){});
-            for(int i=0;i<listItem.size();i++){
-                itemNameList.add(listItem.get(i).getName());
-            }
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        return listItem;
     }
     List<String> itemList(){
-        itemMenuRead();
+        List<ItemMenu> listItem = itemMenuRead();
+        for(int i = 0; i< listItem.size(); i++){
+            itemNameList.add(listItem.get(i).getName());
+        }
         return itemNameList;
+    }
+
+    public ItemMenu getItemByName(String name){
+        ItemMenu Items = new ItemMenu();
+        List<ItemMenu> listItem = Items.itemMenuRead();
+
+        ItemMenu item = new ItemMenu();
+
+
+        for (int i = 0; i < listItem.size(); i++){
+            if(listItem.get(i).getName().equals(name)){
+                item = listItem.get(i);
+            }
+        }
+        System.out.println(item);
+
+        return item;
+    }
+
+    public void looking(String name){
+        String description;
+
+
+        ItemMenu item = new ItemMenu();
+        ItemMenu object = item.getItemByName(name);
+        description= object.getDescription();
+
+        System.out.println(description);
     }
 
     public String getName() {

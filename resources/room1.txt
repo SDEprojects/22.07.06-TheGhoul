@@ -66,6 +66,15 @@
 
 {
     "current": "dinning hall",
+    "north": "No exit",
+    "south": "dining room",
+    "west": "No exit",
+    "east": "attic",
+    "item": "ancient book",
+    "description": "wahahahahahah"
+  },
+  {
+    "current": "dining room",
     "north": "library",
     "east": "cabinet room",
     "south": "master bedroom",

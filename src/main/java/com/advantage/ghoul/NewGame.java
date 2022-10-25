@@ -21,11 +21,13 @@ public class NewGame {
     private ItemMenu gameItems = new ItemMenu();
     private boolean isRunning=false;
     private Location movement=new Location();
+    List<Location> rooms = movement.locationRead();
     private String objectName;
 
     void gameLoop(boolean isRunning) {
         System.out.println("Game Start\n> Type the help for checking the game command");
         while (!isRunning) {
+            System.out.println("What is your next command");
             String wordInput = inputValue.nextLine().trim();
             String[] commandInput = wordInput.toLowerCase().split(delimiter);
             if (commandInput.length == 3) {
@@ -47,8 +49,12 @@ public class NewGame {
                 // create another file for the location then=>verbs.contains(command[0]) && (gameItems.ItemList().contains(objectName)||location)
 //            commandInput.executeCommand(commandInput[0], objectName);
                 System.out.println("works");
+                System.out.println(Location.currentRoom);
+               gameItems.looking(objectName);
+
+
             } else if (verbForMoving.contains(commandInput[0]) && direction.contains((commandInput[1]))){
-//                movement.moving(commandInput[1]);
+                movement.moving(commandInput[1],rooms);
             }
             else {
                 System.out.println(commandInput.length);
@@ -69,6 +75,7 @@ public class NewGame {
         Console.clear();
         InputStream is = FileReading.getFileFromResourceAsStreamFortxt("IntroStory.txt");
         FileReading.printInputStream(is,true,Color.RED);
+        System.out.println(movement.getLocationByName("lobby").getDescription());
         gameLoop(isRunning);
     }
 }

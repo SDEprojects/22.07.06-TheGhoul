@@ -2,64 +2,108 @@
 {
     "current": "lobby",
     "north": "basement",
+    "east": "dining hall",
     "south": "outside",
     "west": "No exit",
-    "east": "dining room",
     "item": "No item",
-    "description": "You are in the lobby. The door to your north leads to the basement. the door to the east leads to the dining room"
-  },
-  {
-      "current": "basement",
-      "north": "No exit",
-      "south": "lobby",
-      "west": "No exit",
-      "east": "library",
-      "item": "key",
-      "description": "You are in the basement. The door to your east leads to the library."
-    },
-  {
+    "description": "You are in the LOBBY.
+    A lot of ceremonies were once held in this room. It used to be filled
+    with music and many celebrations.
+    There are 3 doors in this room.
+    The door to your NORTH leads to the BASEMENT
+    The door to your EAST leads to the DINING HALL
+    The door to your SOUTH leads to OUTSIDE"
+},
+
+{
+    "current": "basement",
+    "north": "no exit",
+    "east": "library",
+    "south": "lobby",
+    "west": "no exit",
+    "item": "key",
+    "description": "You are in the BASEMENT.
+    This room is filled with ornaments and tables.
+    There is a monster sleeping and blocking the path to the LIBRARY.
+    It looks like it's holding something...
+    There are 2 doors in this room
+    The door to your EAST leads to the Cellar
+    The door to your SOUTH leads to the Lobby"
+},
+
+{
     "current": "library",
-    "north": "No exit",
-    "south": "dining room",
-    "west": "No exit",
-    "east": "attic",
+    "north": "no exit",
+    "east": "dungeon",
+    "south": "dining hall",
+    "west": "basement",
     "item": "Ancient Book",
-    "description": "wahahahahahah"
-  },
-  {
-    "current": "dinning room",
+    "description": "You are in the LIBRARY.
+    This room is filled with old books and very old furniture.
+    There is an open book on a desk.
+    There are 3 doors in this room
+    The door to your EAST leads to the DUNGEON
+    The door to your South leads to the DINING HALL
+    The door to your WEST leads to the BASEMENT"
+},
+
+{
+    "current": "dungeon",
+    "north": "no exit",
+    "east": "no exit",
+    "south": "cabinet room",
+    "west": "library",
+    "item": "life stone",
+    "description": "...What is that awful smell!?
+    ...You can hear a low crunching sound.
+    There is very little light in here, but it's enough for you to see a silhouette
+    in the left corner of the room...
+    There is a dense, sticky fluid on the ground.
+    You look down to inspect it...
+    It's blood!...Still feels warm.
+     "
+},
+
+{
+    "current": "dinning hall",
     "north": "library",
-    "south": "master bedroom",
-    "west": "No exit",
     "east": "cabinet room",
+    "south": "master bedroom",
+    "west": "lobby",
     "item": "healing potion",
-    "description": "wahahahahahah"
-  },
-  {
+    "description": "You are in the DINING HALL.
+    Food never ran out and cups never went dry in this place.
+    There are 4 doors in this room
+    The door to your NORTH leads to the LIBRARY
+    The door to your EAST leads to the CABINET ROOM
+    The door to your SOUTH leads to the MASTER BEDROOM
+    The door to your WEST leads to the LOBBY"
+},
+
+{
     "current": "master bedroom",
     "north": "dining room",
+    "east": "no exit",
     "south": "No exit",
     "west": "No exit",
-    "east": "No exit",
     "item": "Divine Sword",
-    "description": "wahahahahahah"
-  },
-  {
+    "description": "You are in the MASTER BEDROOM.
+    This is the King's quarters. Not many have the honor to stand in this place.
+    There is 1 door in this room
+    The door to your SOUTH leads to the DINING HALL"
+},
+
+{
     "current": "cabinet room",
-    "north": "attic",
+    "north": "dungeon",
+    "east": "no exit",
     "south": "No exit",
     "west": "dinning room",
-    "east": "No exit",
     "item": "ring",
-    "description": "wahahahahahah"
-  },
-  {
-      "current": "attic",
-      "north": "No exit",
-      "south": "cabinet room",
-      "west": "library",
-      "east": "No exit",
-      "item": "life stone",
-      "description": "wahahahahahah"
-    }
+    "description": "You are in the CABINET ROOM.
+    This is where people of royalty gathered. No one knows what was discussed in here.
+    There are 2 doors in this room.
+    The door to your NORTH leads to the DUNGEON
+    The door to your WEST leads to the DINING ROOM"
+},
 ]

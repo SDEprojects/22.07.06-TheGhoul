@@ -21,7 +21,7 @@
     "east": "library",
     "south": "lobby",
     "west": "no exit",
-    "item": "key",
+    "item": "special key",
     "description": "You are in the BASEMENT.
     This room is filled with ornaments and tables.
     There is a monster sleeping and blocking the path to the LIBRARY.

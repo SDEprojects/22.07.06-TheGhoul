@@ -43,6 +43,8 @@ public class NewGame {
                 saving();
             }else if(commandInput[0].equals("quit")&& commandInput.length == 1){
                 isRunning=true;
+            }else if(commandInput[0].equals("look")&& gameItems.itemList().contains(objectName)){
+                gameItems.looking(objectName);
             }
             else if (verbs.contains(commandInput[0]) && gameItems.itemList().contains(objectName)) {
 
@@ -51,7 +53,9 @@ public class NewGame {
                 System.out.println("works");
                 System.out.println(Location.currentRoom);
                gameItems.looking(objectName);
-
+                Player newPlayer = new Player();
+                newPlayer.addItem(Location.currentRoom, objectName);
+                System.out.println(newPlayer.getInventory());
 
             } else if (verbForMoving.contains(commandInput[0]) && direction.contains((commandInput[1]))){
                 movement.moving(commandInput[1],rooms);

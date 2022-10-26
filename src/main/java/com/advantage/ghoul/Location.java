@@ -99,7 +99,7 @@ public class Location {
                     }
                 } else if (direction.equals("west")) {
                     if (!rooms.get(i).getWest().equals("No exit")) {
-                        currentRoom = rooms.get(i).getEast();
+                        currentRoom = rooms.get(i).getWest();
                         break;
                     } else {
                         System.out.println("Wrong way!");

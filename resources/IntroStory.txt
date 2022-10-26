@@ -14,7 +14,7 @@ With the Protection Stone missing the kingdom was now vulnerable to contact with
 
 A demonic creature known in legend as The Ghoul appeared on a very dark night
 and began to ravage the kingdom and kill its citizens. It is said that the Ghoul has envy and hatred
-for the living as it never got the opportunity to have a life of itself. The Ghoul cut the kingdom's population
+for the living as it never got the opportunity to have a life of its own. The Ghoul cut the kingdom's population
 by 1/4 in a span of repeated attacks and managed to steal the Life Stone.
 
 With the Protection Stone and Life Stone missing
@@ -24,5 +24,3 @@ You, as the bravest knight in the Guard Guild, have been entrusted with the Wisd
 King Alex has a special mission for you to kill the Ghoul at the "Lost Castle" and find the Life Stone.
 
 Your King and his citizens depend on you to restore balance to the kingdom.
-
-Do you accept your mission?

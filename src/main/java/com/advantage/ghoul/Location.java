@@ -25,12 +25,10 @@ public class Location {
     private ObjectMapper objectMapper = new ObjectMapper();
     private List<Location> listRooms;
     private List<String> locationNameList = new ArrayList<>();
-    public static Scanner scanner = new Scanner(System.in);
 
     public Location() {
         super();
     }
-
     public Location(String current, String north, String south, String west, String east, String item, String description) {
         this.current = current;
         this.north = north;

@@ -15,12 +15,11 @@ class ItemMenu {
     private String name;
     private String location;
     private String description;
-    private JSONParser parser=new JSONParser();
+    private JSONParser parser = new JSONParser();
     private ObjectMapper objectMapper = new ObjectMapper();
     private List<ItemMenu> listItem;
-    private List<String> itemNameList=new ArrayList<>();
+    private List<String> itemNameList = new ArrayList<>();
 
-    //Ctor
     ItemMenu(){
         super();
     }
@@ -39,15 +38,14 @@ class ItemMenu {
             Object obj=parser.parse(result);
             String items = obj.toString();
             listItem = objectMapper.readValue(items, new TypeReference<>(){});
-
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         return listItem;
     }
+
     List<String> itemList(){
         List<ItemMenu> listItem = itemMenuRead();
         for(int i = 0; i< listItem.size(); i++){
@@ -55,6 +53,7 @@ class ItemMenu {
         }
         return itemNameList;
     }
+
 
     public ItemMenu getItemByName(String name){
         ItemMenu Items = new ItemMenu();
@@ -73,50 +72,29 @@ class ItemMenu {
         return item;
     }
 
-    public void looking(String name){
+    String looking(String name, ItemMenu item) {
         String description;
-
-
-        ItemMenu item = new ItemMenu();
         ItemMenu object = item.getItemByName(name);
-        description= object.getDescription();
-
-        System.out.println(description);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getDescription() {
+        description = object.getDescription();
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    private String getName() {
+        return name;
+    }
+
+    private String getLocation() {
+        return location;
+    }
+
+    private String getDescription() {
+        return description;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Item: name=" + getName() + ", location=" + getLocation()
                 + ", description=" + getDescription();
-    }
-
-    public static void main(String[] args) {
-        ItemMenu abc=new ItemMenu();
-        abc.itemMenuRead();
     }
 }
 

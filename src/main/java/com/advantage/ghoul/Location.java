@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 
 public class Location {
-    static String currentRoom="lobby";
+    static String currentRoom="outside";
     String current;
     String north;
     String south;
@@ -77,35 +77,35 @@ public class Location {
         for (int i = 0; i < rooms.size(); i++) {
             if (currentRoom.equals(rooms.get(i).getCurrent())) {
                 if (direction.equals("north")) {
-                    if (!rooms.get(i).getNorth().equals("No exit")) {
+                    if (!rooms.get(i).getNorth().equals("no exit")) {
                         currentRoom = rooms.get(i).getNorth();
                         break;
                     } else {
-                        System.out.println("Wrong way!");
+                        System.out.println(Color.RED + "Wrong way!" + Color.RESET);
                     }
                 } else if (direction.equals("south")) {
-                    if (!rooms.get(i).getSouth().equals("No exit")) {
+                    if (!rooms.get(i).getSouth().equals("no exit")) {
                         currentRoom = rooms.get(i).getSouth();
                         break;
                     } else {
-                        System.out.println("Wrong way!");
+                        System.out.println(Color.RED + "Wrong way!" + Color.RESET);
                     }
                 } else if (direction.equals("east")) {
-                    if (!rooms.get(i).getEast().equals("No exit")) {
+                    if (!rooms.get(i).getEast().equals("no exit")) {
                         currentRoom = rooms.get(i).getEast();
                         break;
                     } else {
-                        System.out.println("Wrong way!");
+                        System.out.println(Color.RED + "Wrong way!" + Color.RESET);
                     }
                 } else if (direction.equals("west")) {
-                    if (!rooms.get(i).getWest().equals("No exit")) {
+                    if (!rooms.get(i).getWest().equals("no exit")) {
                         currentRoom = rooms.get(i).getWest();
                         break;
                     } else {
-                        System.out.println("Wrong way!");
+                        System.out.println(Color.RED + "Wrong way!" + Color.RESET);
                     }
                 } else {
-                    System.out.println("Please enter a valid entry");
+                    System.out.println(Color.RED + "Please enter a valid entry" + Color.RESET);
                     currentRoom = currentRoom;
                 }
             }

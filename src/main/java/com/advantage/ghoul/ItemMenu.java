@@ -68,7 +68,7 @@ class ItemMenu {
                 item = listItem.get(i);
             }
         }
-        System.out.println(item);
+
 
         return item;
     }

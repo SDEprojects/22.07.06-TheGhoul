@@ -1,7 +1,12 @@
 package com.advantage.ghoul;
 
+import com.apps.util.Console;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 class FileReading {
     static InputStream getFileFromResourceAsStreamFortxt(String fileName) {
@@ -23,8 +28,8 @@ class FileReading {
             while ((line = reader.readLine()) != null) {
                 if (delay) {
                     System.out.println(line);
-//                    Console.pause(1000);
-                    //keydown for increase the speed or skip story
+                    Console.pause(800);
+
                 } else {
                     System.out.println(line);
                 }

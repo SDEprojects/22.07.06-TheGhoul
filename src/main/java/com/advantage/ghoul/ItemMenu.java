@@ -59,29 +59,21 @@ class ItemMenu {
     public ItemMenu getItemByName(String name){
         ItemMenu Items = new ItemMenu();
         List<ItemMenu> listItem = Items.itemMenuRead();
-
         ItemMenu item = new ItemMenu();
-
 
         for (int i = 0; i < listItem.size(); i++){
             if(listItem.get(i).getName().equals(name)){
                 item = listItem.get(i);
             }
         }
-
-
         return item;
     }
 
-    public void looking(String name){
+    String looking(String name, ItemMenu item) {
         String description;
-
-
-        ItemMenu item = new ItemMenu();
         ItemMenu object = item.getItemByName(name);
-        description= object.getDescription();
-
-        System.out.println(description);
+        description = object.getDescription();
+        return description;
     }
 
     public String getName() {
@@ -114,9 +106,5 @@ class ItemMenu {
                 + ", description=" + getDescription();
     }
 
-    public static void main(String[] args) {
-        ItemMenu abc=new ItemMenu();
-        abc.itemMenuRead();
-    }
 }
 

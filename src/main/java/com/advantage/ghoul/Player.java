@@ -38,11 +38,12 @@ class Player {
         }
     }
 
-    void dropItem(String itemName,Player player,ItemMenu items) {
+    void dropItem(String itemName,Player player,ItemMenu items,List<Location> rooms) {
         for (int i = 0; i < player.getInventory().size(); i++) {
             if (player.getInventory().get(i).getName().equals(itemName)) {
                 inventory.remove(player.getInventory().get(i));
                 System.out.println("You drop " + itemName + " from your bag!");
+                items.setLocation(Location.currentRoom);
             }else{
                 System.out.println("There is no " + itemName + " to drop from your bag");
             }

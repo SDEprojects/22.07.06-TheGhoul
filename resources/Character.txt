@@ -1,10 +1,11 @@
 [
 {
     "name": "monster",
-    "description": "low level monster",
+    "description":"Monster dropped the library key",
     "location": "basement",
     "hp": "10",
     "attackPoint": "2"
+    "dialogue": "RRRRR"
 
 },
 {
@@ -12,7 +13,9 @@
     "description": "the Ghoul",
     "location": "dungeon",
     "hp": "70",
-    "attackPoint": "20"
+    "attackPoint": "20",
+    "dialogue": "RRRRR"
+
 
 },
 {
@@ -20,7 +23,8 @@
     "description": "the king",
     "location": "dungeon",
     "hp": "80",
-    "attackPoint": "15"
+    "attackPoint": "15",
+    "dialogue": "Oh noooo!"
 
 }
 ]

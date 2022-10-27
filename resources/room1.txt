@@ -83,13 +83,13 @@
     ...You can hear a low crunching sound.
     There is very little light in here, but it's enough for you to see a silhouette
     in the left corner of the room...
-    IT'S THE GHOUL! "
+    IT'S THE GHOUL!
 
     ====================================================================
 
     There are 2 doors in this room
     The door to your WEST leads to the LIBRARY
-    The door to your SOUTH Leads to the CABINET ROOM
+    The door to your SOUTH Leads to the CABINET ROOM"
 },
 
 {

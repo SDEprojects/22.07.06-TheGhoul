@@ -20,6 +20,7 @@ public class Character {
     private int xp = 1;
     private int attackPoint;
     private String location;
+    private String dialogue;
     private JSONParser parser = new JSONParser();
     private ObjectMapper objectMapper = new ObjectMapper();
     private List<Character> listCharacters;
@@ -65,25 +66,27 @@ public class Character {
     void attack(Character opponent){
 
             int attackPoint = (int)(Math.random()* getAttackPoint());
-            System.out.println(getName()+ " " + getHp());
             if (attackPoint==0){
                 System.out.println(getName()+" missed. No damage caused.");
+            }else{
+                System.out.println(getName()+" caused " + attackPoint + " damages" );
             }
 
             monsterHP(attackPoint, opponent);
 
+
+
     }
 
     void monsterHP(int damage, Character monster){
-        System.out.println(monster.getName() + " " + monster.getHp());
         monster.hp-=damage;
         if(monster.hp <1){
             System.out.println(this.getName() + " win");
-            System.out.println(this.getHp());
+            if(monster.getName().equals("monster")){
+                System.out.println("Monster dropped the library key");
+            }
         }else{
-            //System.out.println(monster.getName() + " " + monster.getHp());
             monster.attack(this);
-            System.out.println("ABCD"+ this.getName());
         }
     }
 
@@ -109,6 +112,10 @@ public class Character {
 
     public String getLocation() {
         return location;
+    }
+
+    public String getDialogue() {
+        return dialogue;
     }
 
     @Override

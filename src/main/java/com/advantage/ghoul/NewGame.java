@@ -22,6 +22,8 @@ public class NewGame {
     List<Location> rooms = movement.locationRead();
     private Command InputCommand = new Command();
     private String objectName;
+    Character newCharacter = new Character("player", "this is a player", 100, 10);
+    Character monster = new Character("monster", "this is a player", 100, 10);
 
     void gameLoop(boolean isRunning) {
         System.out.println("\n> Type 'help' for game instructions");
@@ -38,7 +40,9 @@ public class NewGame {
             }
             if (commandInput[0].equals("help") && commandInput.length == 1) {
                 help();
-            } else if (commandInput[0].equals("save") && commandInput.length == 1) {
+            } else if(commandInput[0].equals("attack") && commandInput.length == 1) {
+                newCharacter.attack(monster);
+            }else if (commandInput[0].equals("save") && commandInput.length == 1) {
                 saving();
             } else if (commandInput[0].equals("quit") && commandInput.length == 1) {
                 isRunning = true;

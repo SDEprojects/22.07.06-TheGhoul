@@ -20,7 +20,6 @@ class ItemMenu {
     private List<ItemMenu> listItem;
     private List<String> itemNameList=new ArrayList<>();
 
-    //Ctor
     ItemMenu(){
         super();
     }
@@ -31,7 +30,7 @@ class ItemMenu {
         this.description = description;
     }
     //business function
-    public List<ItemMenu> itemMenuRead(){
+    List<ItemMenu> itemMenuRead(){
         try {
             InputStream itemFile = FileReading.getFileFromResourceAsStreamFortxt("Item.txt");
             String result = new BufferedReader(new InputStreamReader(itemFile))
@@ -56,7 +55,7 @@ class ItemMenu {
         return itemNameList;
     }
 
-    public ItemMenu getItemByName(String name){
+    ItemMenu getItemByName(String name){
         ItemMenu Items = new ItemMenu();
         List<ItemMenu> listItem = Items.itemMenuRead();
         ItemMenu item = new ItemMenu();
@@ -80,24 +79,12 @@ class ItemMenu {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     @Override

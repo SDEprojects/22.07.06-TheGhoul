@@ -9,7 +9,9 @@
     "description": "You are OUTSIDE the castle.
     The King and citizens of Oak depend on you. You are their only hope.
     You must kill the Ghoul and find the Life Stone.
+
     ====================================================================
+
     There is 1 door in this area
     The door to your NORTH leads to the LOBBY of the castle"
 },
@@ -43,9 +45,12 @@
     This room is filled with ornaments and tables.
     There is a monster sleeping and blocking the path to the LIBRARY.
     It looks like it's holding something...
+
+    ====================================================================
+
     There are 2 doors in this room
     The door to your EAST leads to the LIBRARY
-    The door to your SOUTH leads to the Lobby"
+    The door to your SOUTH leads to the LOBBY"
 },
 
 {
@@ -58,6 +63,9 @@
     "description": "You are in the LIBRARY.
     This room is filled with old books and very old furniture.
     There is an open book on a desk.
+
+    ====================================================================
+
     There are 3 doors in this room
     The door to your EAST leads to the DUNGEON
     The door to your South leads to the DINING ROOM
@@ -76,6 +84,12 @@
     There is very little light in here, but it's enough for you to see a silhouette
     in the left corner of the room...
     IT'S THE GHOUL! "
+
+    ====================================================================
+
+    There are 2 doors in this room
+    The door to your WEST leads to the LIBRARY
+    The door to your SOUTH Leads to the CABINET ROOM
 },
 
 {
@@ -87,6 +101,9 @@
     "item": "healing potion",
     "description": "You are in the DINING ROOM.
     Food never ran out and cups never went dry in this place.
+
+    ====================================================================
+
     There are 4 doors in this room
     The door to your NORTH leads to the LIBRARY
     The door to your EAST leads to the CABINET ROOM
@@ -103,6 +120,9 @@
     "item": "Divine Sword",
     "description": "You are in the MASTER BEDROOM.
     This is the King's quarters. Not many have the honor to stand in this place.
+
+    ====================================================================
+
     There is 1 door in this room
     The door to your NORTH leads to the DINING ROOM"
 },
@@ -116,6 +136,9 @@
     "item": "ring",
     "description": "You are in the CABINET ROOM.
     This is where people of royalty gathered. No one knows what was discussed in here.
+
+    ====================================================================
+
     There are 2 doors in this room.
     The door to your NORTH leads to the DUNGEON
     The door to your WEST leads to the DINING ROOM"

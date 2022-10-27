@@ -43,7 +43,7 @@ public class NewGame {
             } else if (commandInput[0].equals("quit") && commandInput.length == 1) {
                 isRunning = true;
             } else if (verbs.contains(commandInput[0]) && gameItems.itemList().contains(objectName)) {
-                InputCommand.executeCommand(commandInput[0], objectName, player, gameItems, movement, rooms);
+                InputCommand.executeCommand(commandInput[0], objectName, player, gameItems, rooms);
             } else if (commandInput.length == 2 && verbForMoving.contains(commandInput[0]) && direction.contains((commandInput[1]))) {
                 movement.moving(commandInput[1], rooms);
             } else {

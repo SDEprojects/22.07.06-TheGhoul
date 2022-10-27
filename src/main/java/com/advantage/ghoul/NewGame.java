@@ -13,7 +13,7 @@ public class NewGame {
     private Player player = new Player();
     private Scanner inputValue = new Scanner(System.in);
     private String delimiter = "[ \t,.:;?!\"']+";
-    private List<String> verbs = new ArrayList<>(Arrays.asList("check", "look", "get", "use", "open"));
+    private List<String> verbs = new ArrayList<>(Arrays.asList("check", "look", "get", "use", "open","drop"));
     private List<String> verbForMoving = new ArrayList<>(Arrays.asList("go", "run"));
     private List<String> direction = new ArrayList<>(Arrays.asList("south", "north", "east", "west", "back"));
     private ItemMenu gameItems = new ItemMenu();

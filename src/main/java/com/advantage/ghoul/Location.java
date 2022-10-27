@@ -135,6 +135,10 @@ public class Location {
         return item;
     }
 
+    public void setItem(String item) {
+        this.item = item;
+    }
+
     public String getDescription() {
         return description;
     }

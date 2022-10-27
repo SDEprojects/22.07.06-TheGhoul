@@ -12,7 +12,6 @@ class StoryWithoutDelay implements Runnable {
         if (input.length() > 0) {
             Console.clear();
             NewGame.skip = true;
-            Thread.interrupted();
         }
     }
 }

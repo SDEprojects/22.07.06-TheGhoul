@@ -14,18 +14,17 @@ import java.util.stream.Collectors;
 
 public class Location {
     static String currentRoom="outside";
-    String current;
-    String north;
-    String south;
-    String west;
-    String east;
-    String item;
-    String description;
+    private String current;
+    private String north;
+    private String south;
+    private String west;
+    private String east;
+    private String item;
+    private String description;
     private JSONParser parser = new JSONParser();
     private ObjectMapper objectMapper = new ObjectMapper();
     private List<Location> listRooms;
     private List<String> locationNameList = new ArrayList<>();
-    public static Scanner scanner = new Scanner(System.in);
 
     public Location() {
         super();
@@ -41,7 +40,7 @@ public class Location {
         this.description = description;
     }
 
-    public List<Location> locationRead() {
+    List<Location> locationRead() {
         try {
             InputStream locationFile = FileReading.getFileFromResourceAsStreamFortxt("room1.txt");
             String result = new BufferedReader(new InputStreamReader(locationFile))
@@ -62,7 +61,7 @@ public class Location {
         return listRooms;
     }
 
-    public Location getLocationByName(String name) {
+    Location getLocationByName(String name) {
         Location room = null;
         List<Location> Locations = locationRead();
         for (Location location : Locations) {
@@ -73,7 +72,7 @@ public class Location {
         return room;
     }
 
-    public void moving(String direction,List<Location> rooms) {
+    void moving(String direction,List<Location> rooms) {
         for (int i = 0; i < rooms.size(); i++) {
             if (currentRoom.equals(rooms.get(i).getCurrent())) {
                 if (direction.equals("north")) {

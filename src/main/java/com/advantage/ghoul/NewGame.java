@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class NewGame {
-    static boolean skip=false;
+    static boolean skip = false;
     private Player player = new Player();
     private Scanner inputValue = new Scanner(System.in);
     private String delimiter = "[ \t,.:;?!\"']+";
@@ -20,7 +20,7 @@ public class NewGame {
     private boolean isRunning = false;
     private Location movement = new Location();
     List<Location> rooms = movement.locationRead();
-    private Command InputCommand=new Command();
+    private Command InputCommand = new Command();
     private String objectName;
 
     void gameLoop(boolean isRunning) {
@@ -43,11 +43,10 @@ public class NewGame {
             } else if (commandInput[0].equals("quit") && commandInput.length == 1) {
                 isRunning = true;
             } else if (verbs.contains(commandInput[0]) && gameItems.itemList().contains(objectName)) {
-                InputCommand.executeCommand(commandInput[0],objectName,player,gameItems,movement,rooms);
+                InputCommand.executeCommand(commandInput[0], objectName, player, gameItems, movement, rooms);
             } else if (commandInput.length == 2 && verbForMoving.contains(commandInput[0]) && direction.contains((commandInput[1]))) {
                 movement.moving(commandInput[1], rooms);
             } else {
-
                 System.out.println(Color.YELLOW + "Invalid input. Please enter the 'verb' + 'name'. Type help for checking the command" + Color.RESET);
             }
         }
@@ -64,11 +63,11 @@ public class NewGame {
 
     void introStory() {
         Console.clear();
-        System.out.println(Color.YELLOW+"Type Anything to skip the story\n"+Color.RESET);
-        StoryIntroWithDelay story=new StoryIntroWithDelay();
-        Thread newThread=new Thread(story);
-        StoryWithoutDelay abc=new StoryWithoutDelay();
-        Thread skip=new Thread(abc);
+        System.out.println(Color.YELLOW + "Type Anything to skip the story\n" + Color.RESET);
+        StoryIntroWithDelay story = new StoryIntroWithDelay();
+        Thread newThread = new Thread(story);
+        StoryWithoutDelay abc = new StoryWithoutDelay();
+        Thread skip = new Thread(abc);
         newThread.start();
         skip.start();
         try {
@@ -76,7 +75,7 @@ public class NewGame {
             Thread.sleep(1000);
             System.out.println(movement.getLocationByName("outside").getDescription());
             gameLoop(isRunning);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }

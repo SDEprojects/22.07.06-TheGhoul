@@ -8,10 +8,6 @@ import java.util.stream.Collectors;
 public class GameControl {
     private static final GameControl startGame = new GameControl();
     private Scanner scanner = new Scanner(System.in);
-    private final String RED = "\u001B[31m";
-    private final String YELLOW = "\033[0;33m";
-    private final String GREEN = "\033[0;32m";
-    private final String RESET = "\033[0m";
     private final NewGame newGame = new NewGame();
 
     private GameControl() {
@@ -29,19 +25,19 @@ public class GameControl {
             System.out.println("\n Thanks for playing!");
             System.exit(0);
         } else {
-            System.out.println(RED + "Invalid input." + YELLOW);
+            System.out.println(Color.RED + "Invalid input." + Color.YELLOW);
             startGame();
         }
     }
 
     private void gameSummary() {
         InputStream summary = FileReading.getFileFromResourceAsStreamFortxt("gameSummary.txt");
-        FileReading.printInputStream(summary,false,RED);
+        FileReading.printInputStream(summary,false,Color.RED);
     }
 
     private void display() {
         InputStream logo = FileReading.getFileFromResourceAsStreamFortxt("TheGhoul.txt");
-        FileReading.printInputStream(logo,false,RED);
+        FileReading.printInputStream(logo,false,Color.GREEN);
         gameSummary();
     }
 

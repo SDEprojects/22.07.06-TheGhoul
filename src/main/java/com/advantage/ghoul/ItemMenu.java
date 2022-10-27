@@ -47,6 +47,7 @@ class ItemMenu {
 
         return listItem;
     }
+
     List<String> itemList(){
         List<ItemMenu> listItem = itemMenuRead();
         for(int i = 0; i< listItem.size(); i++){
@@ -81,6 +82,10 @@ class ItemMenu {
 
     public String getLocation() {
         return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getDescription() {

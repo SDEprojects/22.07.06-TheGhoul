@@ -2,13 +2,10 @@ package com.advantage.ghoul;
 
 import com.apps.util.Console;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
 
-class FileReading {
+class FileReading{
     static InputStream getFileFromResourceAsStreamFortxt(String fileName) {
         ClassLoader classLoader = FileReading.class.getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(fileName);
@@ -29,7 +26,9 @@ class FileReading {
                 if (delay) {
                     System.out.println(line);
                     Console.pause(800);
-
+                    if(NewGame.skip==true){
+                        Thread.currentThread().interrupt();
+                    }
                 } else {
                     System.out.println(line);
                 }

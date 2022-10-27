@@ -2,16 +2,14 @@ package com.advantage.ghoul;
 
 import com.apps.util.Console;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class NewGame {
+    static boolean skip=false;
     private Player player = new Player();
     private Scanner inputValue = new Scanner(System.in);
     private String delimiter = "[ \t,.:;?!\"']+";
@@ -66,9 +64,20 @@ public class NewGame {
 
     void introStory() {
         Console.clear();
-        InputStream is = FileReading.getFileFromResourceAsStreamFortxt("IntroStory.txt");
-        FileReading.printInputStream(is, true, Color.RED);
-        System.out.println(movement.getLocationByName("outside").getDescription());
-        gameLoop(isRunning);
+        System.out.println(Color.YELLOW+"Type Anything to skip the story\n"+Color.RESET);
+        StoryIntroWithDelay story=new StoryIntroWithDelay();
+        Thread newThread=new Thread(story);
+        StoryWithoutDelay abc=new StoryWithoutDelay();
+        Thread skip=new Thread(abc);
+        newThread.start();
+        skip.start();
+        try {
+            newThread.join();
+            Thread.sleep(1000);
+            System.out.println(movement.getLocationByName("outside").getDescription());
+            gameLoop(isRunning);
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 }

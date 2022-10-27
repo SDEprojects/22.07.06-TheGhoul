@@ -1,0 +1,26 @@
+[
+{
+    "name": "monster",
+    "description": "low level monster",
+    "location": "basement",
+    "hp": "10",
+    "attackPoint": "2"
+
+},
+{
+    "name": "ghoul",
+    "description": "the Ghoul",
+    "location": "dungeon",
+    "hp": "70",
+    "attackPoint": "20"
+
+},
+{
+    "name": "king",
+    "description": "the king",
+    "location": "dungeon",
+    "hp": "80",
+    "attackPoint": "15"
+
+}
+]

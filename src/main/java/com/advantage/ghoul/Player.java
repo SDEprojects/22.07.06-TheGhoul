@@ -30,7 +30,7 @@ class Player {
         }
         ItemMenu itemInRoom = items.getItemByName(itemName);
         if (roomNumber==-1) {
-            System.out.println("There is no" + itemName + " in this area");
+            System.out.println("There is no " + itemName + " in this area");
         } else {
             inventory.add(itemInRoom);
             rooms.get(roomNumber).setItem("no item");

@@ -21,7 +21,7 @@
     "east": "dining room",
     "south": "outside",
     "west": "no exit",
-    "item": "no item",
+    "item": "special key",
     "description": "You are in the LOBBY.
     A lot of ceremonies were once held in this room. It used to be filled
     with music and many celebrations.
@@ -40,7 +40,7 @@
     "east": "library",
     "south": "lobby",
     "west": "no exit",
-    "item": "special key",
+    "item": "library key",
     "description": "You are in the BASEMENT.
     This room is filled with ornaments and tables.
     There is a monster sleeping and blocking the path to the LIBRARY.

@@ -1,6 +1,7 @@
 =========================================================
 One Command word
 Type "quit" for existing the game
+Type "map"  for opening the whole game map
 =========================================================
 Two Command words (Verb+Noun)
 "check" and "bag" for checking inventory
@@ -8,5 +9,5 @@ Two Command words (Verb+Noun)
 "go" and "direction" for moving different room, direction will be north,south,east and west
 "get" and "item's name" for put this item to the bag
 "use" and "item's name" for using the item
-"open" and "map" for opening the whole game map
+"attack" and "monster's name" for attack current room monster
 =========================================================

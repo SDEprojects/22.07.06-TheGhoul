@@ -21,16 +21,16 @@ class Player {
     }
 
     void addItem(String roomName, String itemName, ItemMenu items, List<Location> rooms) {
-        int roomNumber=0;
+        int roomNumber=-1;
+
         for (int i = 0; i < rooms.size(); i++) {
-            if (rooms.get(i).getCurrent().equals(roomName)) {
-                itemName = rooms.get(i).getItem();
+            if (rooms.get(i).getCurrent().equals(roomName)&& itemName== rooms.get(i).getItem()) {
                 roomNumber=i;
             }
         }
         ItemMenu itemInRoom = items.getItemByName(itemName);
-        if (itemName.equals("no item")) {
-            System.out.println("There is " + itemName + " in this area");
+        if (roomNumber==-1) {
+            System.out.println("There is no" + itemName + " in this area");
         } else {
             inventory.add(itemInRoom);
             rooms.get(roomNumber).setItem("no item");

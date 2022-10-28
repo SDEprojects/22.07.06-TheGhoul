@@ -150,5 +150,5 @@ public class Location {
         return "Room: current Room=" + getCurrent() + ", north=" + getNorth() + ", south=" + getSouth() + ", west=" + getWest()
                 + ", east=" + getEast() + ", item=" + getItem() + ", description=" + getDescription();
     }
-}
 
+}

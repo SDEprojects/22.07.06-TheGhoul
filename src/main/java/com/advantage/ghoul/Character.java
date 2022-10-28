@@ -138,7 +138,6 @@ public class Character {
     public static void main(String[] args) {
         Character characters = new Character();
         FileReading file = new FileReading();
-        System.out.println(file.dataReader("Character.txt"));
         System.out.println(characters.getCharacterByName("monster"));
 
 

@@ -44,7 +44,7 @@ public class Character {
 
     public List<Character> dataReader() {
         try {
-            InputStream locationFile = FileReading.getFileFromResourceAsStreamFortxt("Item.txt");
+            InputStream locationFile = FileReading.getFileFromResourceAsStreamFortxt("Character.txt");
             String result = new BufferedReader(new InputStreamReader(locationFile))
                     .lines().collect(Collectors.joining("\n"));
             Object obj = parser.parse(result);

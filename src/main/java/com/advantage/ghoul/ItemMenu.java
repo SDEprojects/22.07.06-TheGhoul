@@ -33,8 +33,8 @@ class ItemMenu {
     //business function
     public List<ItemMenu> dataReader() {
         try {
-            InputStream locationFile = FileReading.getFileFromResourceAsStreamFortxt("Item.txt");
-            String result = new BufferedReader(new InputStreamReader(locationFile))
+            InputStream itemFile = FileReading.getFileFromResourceAsStreamFortxt("Item.txt");
+            String result = new BufferedReader(new InputStreamReader(itemFile))
                     .lines().collect(Collectors.joining("\n"));
             Object obj = parser.parse(result);
             String data = obj.toString();

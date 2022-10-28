@@ -1,6 +1,0 @@
-[
-    {"get":["get","pick","grab","take"],
-    "check":["check","inspect","inventory"]
-    "look":["look","research","thinking"]
-    }
-]

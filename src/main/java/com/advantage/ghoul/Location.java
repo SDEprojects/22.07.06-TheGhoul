@@ -21,10 +21,11 @@ public class Location {
     private String east;
     private String item;
     private String description;
-    private JSONParser parser = new JSONParser();
+    private JSONParser parser=new JSONParser();
     private ObjectMapper objectMapper = new ObjectMapper();
-    private List<Location> listRooms;
+    private List<Location> locations;
     private List<String> locationNameList = new ArrayList<>();
+    private FileReading file = new FileReading();
 
     public Location() {
         super();
@@ -40,30 +41,31 @@ public class Location {
         this.description = description;
     }
 
-    List<Location> locationRead() {
+    public List<Location> dataReader() {
         try {
             InputStream locationFile = FileReading.getFileFromResourceAsStreamFortxt("room1.txt");
             String result = new BufferedReader(new InputStreamReader(locationFile))
                     .lines().collect(Collectors.joining("\n"));
             Object obj = parser.parse(result);
-            String rooms = obj.toString();
-            listRooms = objectMapper.readValue(rooms, new TypeReference<>() {
+            String data = obj.toString();
+            locations = objectMapper.readValue(data, new TypeReference<>() {
             });
-            for (int i = 0; i < listRooms.size(); i++) {
-                //create the list of the room name in the with array list
-                locationNameList.add(listRooms.get(i).getCurrent());
-            }
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return listRooms;
+        return locations;
     }
+
+
 
     Location getLocationByName(String name) {
         Location room = null;
-        List<Location> Locations = locationRead();
+
+        List<Location> Locations = dataReader();
+        System.out.println(Locations);
         for (Location location : Locations) {
             if (location.getCurrent().equals(name)) {
                 return room = location;
@@ -148,4 +150,5 @@ public class Location {
         return "Room: current Room=" + getCurrent() + ", north=" + getNorth() + ", south=" + getSouth() + ", west=" + getWest()
                 + ", east=" + getEast() + ", item=" + getItem() + ", description=" + getDescription();
     }
+
 }

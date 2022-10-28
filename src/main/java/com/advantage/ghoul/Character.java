@@ -21,7 +21,9 @@ public class Character {
     private int attackPoint;
     private String location;
     private String dialogue;
-    private FileReading file = new FileReading();
+    private JSONParser parser=new JSONParser();
+    private ObjectMapper objectMapper = new ObjectMapper();
+    private List<Character> listCharacter;
     private List<String> characterNameList = new ArrayList<>();
 
     public void setHp(int hp) {
@@ -40,10 +42,28 @@ public class Character {
 
     //business methods
 
+    public List<Character> dataReader() {
+        try {
+            InputStream locationFile = FileReading.getFileFromResourceAsStreamFortxt("Item.txt");
+            String result = new BufferedReader(new InputStreamReader(locationFile))
+                    .lines().collect(Collectors.joining("\n"));
+            Object obj = parser.parse(result);
+            String data = obj.toString();
+            listCharacter = objectMapper.readValue(data, new TypeReference<>() {
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return listCharacter;
+    }
+
     Character getCharacterByName(String name) {
         Character character = null;
 
-        List<Character> characters = file.dataReader("Character.txt");
+        List<Character> characters = dataReader();
         for (Character npc : characters) {
             if (npc.getName().equals(name)) {
                 return character = npc;
@@ -119,6 +139,9 @@ public class Character {
         Character characters = new Character();
         FileReading file = new FileReading();
         System.out.println(file.dataReader("Character.txt"));
+        System.out.println(characters.getCharacterByName("monster"));
+
+
 
         Character player = new Character("Vanessa","Princess", 100, 10);
 

@@ -31,11 +31,29 @@ class ItemMenu {
         this.description = description;
     }
     //business function
+    public List<ItemMenu> dataReader() {
+        try {
+            InputStream locationFile = FileReading.getFileFromResourceAsStreamFortxt("Item.txt");
+            String result = new BufferedReader(new InputStreamReader(locationFile))
+                    .lines().collect(Collectors.joining("\n"));
+            Object obj = parser.parse(result);
+            String data = obj.toString();
+            listItem = objectMapper.readValue(data, new TypeReference<>() {
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return listItem;
+    }
+
 
 
     List<String> itemList(){
 
-        List<ItemMenu> listItem = file.dataReader("Item.txt");
+        List<ItemMenu> listItem = dataReader();
         for(int i = 0; i< listItem.size(); i++){
             itemNameList.add(listItem.get(i).getName());
         }
@@ -44,7 +62,7 @@ class ItemMenu {
 
     ItemMenu getItemByName(String name){
         ItemMenu Items = new ItemMenu();
-        List<ItemMenu> listItem = file.dataReader("Item.txt");
+        List<ItemMenu> listItem = dataReader();
         ItemMenu item = new ItemMenu();
 
         for (int i = 0; i < listItem.size(); i++){
@@ -83,6 +101,7 @@ class ItemMenu {
         return "Item: name=" + getName() + ", location=" + getLocation()
                 + ", description=" + getDescription();
     }
+
 
 }
 

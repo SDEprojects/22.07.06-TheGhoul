@@ -53,10 +53,7 @@ class FileReading {
             String data = obj.toString();
             listData = objectMapper.readValue(data, new TypeReference<>() {
             });
-            for (int i = 0; i < listData.size(); i++) {
-                //create the list of the room name in the with array list
-                nameList.add(listData.get(i).getName());
-            }
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {

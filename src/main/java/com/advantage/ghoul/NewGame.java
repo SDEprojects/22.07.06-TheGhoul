@@ -18,8 +18,7 @@ public class NewGame {
     private ItemMenu gameItems = new ItemMenu();
     private boolean isRunning = false;
     private Location movement = new Location();
-    private FileReading file = new FileReading();
-    List<Location> rooms = file.dataReader("room1.txt");
+    List<Location> rooms = movement.dataReader();
     private Command InputCommand = new Command();
     private String objectName;
     Character player = new Character("player", "this is a player", 100, 10);

@@ -21,9 +21,9 @@ public class Character {
     private int attackPoint;
     private String location;
     private String dialogue;
-    private JSONParser parser = new JSONParser();
+    private JSONParser parser=new JSONParser();
     private ObjectMapper objectMapper = new ObjectMapper();
-    private List<Character> listCharacters;
+    private List<Character> listCharacter;
     private List<String> characterNameList = new ArrayList<>();
 
     public void setHp(int hp) {
@@ -42,26 +42,37 @@ public class Character {
 
     //business methods
 
-    List<Character> characterRead() {
+    public List<Character> dataReader() {
         try {
-            InputStream locationFile = FileReading.getFileFromResourceAsStreamFortxt("Character.txt");
-            String result = new BufferedReader(new InputStreamReader(locationFile))
+            InputStream characterFile = FileReading.getFileFromResourceAsStreamFortxt("Character.txt");
+            String result = new BufferedReader(new InputStreamReader(characterFile))
                     .lines().collect(Collectors.joining("\n"));
             Object obj = parser.parse(result);
-            String characters = obj.toString();
-            listCharacters = objectMapper.readValue(characters, new TypeReference<>() {
+            String data = obj.toString();
+            listCharacter = objectMapper.readValue(data, new TypeReference<>() {
             });
-            for (int i = 0; i < listCharacters.size(); i++) {
-                //create the list of the room name in the with array list
-                characterNameList.add(listCharacters.get(i).getName());
-            }
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return listCharacters;
+        return listCharacter;
     }
+
+    Character getCharacterByName(String name) {
+        Character character = null;
+
+        List<Character> characters = dataReader();
+        for (Character npc : characters) {
+            if (npc.getName().equals(name)) {
+                return character = npc;
+            }
+        }
+        return character;
+    }
+
+
 
     void attack(Character opponent){
 
@@ -120,12 +131,17 @@ public class Character {
 
     @Override
     public String toString(){
-        return getName();
+        return "Character: Name= " + getName() + " Description= " + getDescription() + " hp= " + getHp() +
+        " hp= " + getXp();
     }
 
     public static void main(String[] args) {
         Character characters = new Character();
-        System.out.println(characters.characterRead());
+        FileReading file = new FileReading();
+        System.out.println(file.dataReader("Character.txt"));
+        System.out.println(characters.getCharacterByName("monster"));
+
+
 
         Character player = new Character("Vanessa","Princess", 100, 10);
 

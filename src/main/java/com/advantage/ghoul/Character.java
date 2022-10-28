@@ -93,6 +93,7 @@ public class Character {
         monster.hp-=damage;
         if(monster.hp <1){
             System.out.println(this.getName() + " win");
+
             if(monster.getName().equals("monster")){
                 System.out.println("Monster dropped the library key");
             }
@@ -143,13 +144,16 @@ public class Character {
     }
 
     void useHealingPotion(){
+        int formerHp = getHp();
         if(inventory.contains("healing potion")){
             if (getHp() == MAXHP){
                 System.out.println("You are healthy. You do not need the healing potion.");
             }else if(getHp()<MAXHP-5){
                 setHp(getHp()+5);
+                System.out.println("Your Hp went from " + formerHp + " to " + getHp());
             }else{
                 setHp(MAXHP);
+                System.out.println("You have been restore to complete health.");
             }
 
         }

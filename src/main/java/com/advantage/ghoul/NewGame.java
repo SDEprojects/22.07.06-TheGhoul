@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class NewGame {
     static boolean skip = false;
-    private Player playerAbility = new Player();
+    private Character playerAbility = new Character();
     private Scanner inputValue = new Scanner(System.in);
     private String delimiter = "[ \t,.:;?!\"']+";
     private List<String> verbs = new ArrayList<>(Arrays.asList("check", "look", "get", "use", "open", "drop"));
@@ -21,8 +21,8 @@ public class NewGame {
     List<Location> rooms = movement.dataReader();
     private Command InputCommand = new Command();
     private String objectName;
-    Character player = new Character("player", "this is a player", 100, 10);
-    Character monster = new Character("monster", "this is a player", 100, 10);
+//    Character player = new Character("player", "this is a player", 100, 10);
+//    Character monster = new Character("monster", "this is a player", 100, 10);
 
     void gameLoop(boolean isRunning) {
         System.out.println("\n> Type 'help' for game instructions");

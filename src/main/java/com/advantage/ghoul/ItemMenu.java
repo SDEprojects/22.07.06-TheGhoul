@@ -19,6 +19,7 @@ class ItemMenu {
     private ObjectMapper objectMapper = new ObjectMapper();
     private List<ItemMenu> listItem;
     private List<String> itemNameList=new ArrayList<>();
+    FileReading file = new FileReading();
 
     ItemMenu(){
         super();
@@ -30,26 +31,11 @@ class ItemMenu {
         this.description = description;
     }
     //business function
-    List<ItemMenu> itemMenuRead(){
-        try {
-            InputStream itemFile = FileReading.getFileFromResourceAsStreamFortxt("Item.txt");
-            String result = new BufferedReader(new InputStreamReader(itemFile))
-                    .lines().collect(Collectors.joining("\n"));
-            Object obj=parser.parse(result);
-            String items = obj.toString();
-            listItem = objectMapper.readValue(items, new TypeReference<>(){});
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return listItem;
-    }
 
     List<String> itemList(){
-        List<ItemMenu> listItem = itemMenuRead();
+
+        List<ItemMenu> listItem = file.dataReader("Item.txt");
         for(int i = 0; i< listItem.size(); i++){
             itemNameList.add(listItem.get(i).getName());
         }
@@ -58,7 +44,7 @@ class ItemMenu {
 
     ItemMenu getItemByName(String name){
         ItemMenu Items = new ItemMenu();
-        List<ItemMenu> listItem = Items.itemMenuRead();
+        List<ItemMenu> listItem = file.dataReader("Item.txt");
         ItemMenu item = new ItemMenu();
 
         for (int i = 0; i < listItem.size(); i++){

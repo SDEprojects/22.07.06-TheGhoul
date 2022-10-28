@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.util.List;
 
 class Command {
+    ParseCommand check=new ParseCommand();
+
     String commandFilter(String[] command) {
         if (command.length == 3) {
             return command[1] + " " + command[2];
@@ -17,6 +19,7 @@ class Command {
     }
 
     void executeCommand(String verb, String noun, Character player, ItemMenu gameItems, List<Location> rooms) {
+        verb=check.verifyAction(verb);
         if (verb.equals("look")) {
             System.out.println(gameItems.looking(noun, gameItems));
         } else if (verb.equals("get")) {

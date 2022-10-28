@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Player {
     private String name;
@@ -51,9 +52,13 @@ class Player {
     }
 
     void checkInventory(){
-        System.out.println(getInventory());
+       String itemList=inventory.stream().map(x->x.getName()).collect(Collectors.joining(", "));
+       if(itemList.length()>0){
+           System.out.println("You have following items: " + itemList + ".");
+       }else {
+           System.out.println("You have nothing in your bag");
+       }
     }
-
 
     public String getName() {
         return name;

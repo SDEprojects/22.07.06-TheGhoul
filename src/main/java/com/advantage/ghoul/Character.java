@@ -17,6 +17,8 @@ public class Character {
     private String name;
     private String description;
     private int hp;
+    private List<String> inventory = new ArrayList<>();
+    private int MAXHP = 30;
     private int xp = 1;
     private int attackPoint;
     private String location;
@@ -85,8 +87,6 @@ public class Character {
 
             monsterHP(attackPoint, opponent);
 
-
-
     }
 
     void monsterHP(int damage, Character monster){
@@ -99,6 +99,62 @@ public class Character {
         }else{
             monster.attack(this);
         }
+    }
+
+
+    void addItem(String roomName, String itemName, ItemMenu items, List<Location> rooms) {
+        int roomNumber=-1;
+
+        for (int i = 0; i < rooms.size(); i++) {
+            if (rooms.get(i).getCurrent().equals(roomName)&& rooms.get(i).getItem().equals(itemName)) {
+                roomNumber=i;
+            }
+        }
+        ItemMenu itemInRoom = items.getItemByName(itemName);
+        if (roomNumber==-1) {
+            System.out.println("There is no " + itemName + " in this area");
+        } else {
+            inventory.add(itemName);
+            rooms.get(roomNumber).setItem("no item");
+            items.setLocation("inventory");
+            System.out.println("You get " + itemName + " in your bag!");
+        }
+    }
+
+    void dropItem(String itemName,Character player,ItemMenu items,List<Location> rooms) {
+        for (int i = 0; i < player.getInventory().size(); i++) {
+            if (player.getInventory().get(i).equals(itemName)) {
+                inventory.remove(itemName);
+                System.out.println("You drop " + itemName + " from your bag!");
+                items.setLocation(Location.currentRoom);
+            }else{
+                System.out.println("There is no " + itemName + " to drop from your bag");
+            }
+        }
+    }
+
+    void checkInventory(){
+        getInventory();
+        if(getInventory().size()>0){
+            System.out.println("You have following items: " + getInventory() + ".");
+        }else {
+            System.out.println("You have nothing in your bag");
+        }
+    }
+
+    void useHealingPotion(){
+        if(inventory.contains("healing potion")){
+            if (getHp() == MAXHP){
+                System.out.println("You are healthy. You do not need the healing potion.");
+            }else if(getHp()<MAXHP-5){
+                setHp(getHp()+5);
+            }else{
+                setHp(MAXHP);
+            }
+
+        }
+
+        getInventory().remove("healing potion");
     }
 
     public String getName() {
@@ -125,6 +181,10 @@ public class Character {
         return location;
     }
 
+    public List<String> getInventory() {
+        return inventory;
+    }
+
     public String getDialogue() {
         return dialogue;
     }
@@ -137,7 +197,7 @@ public class Character {
 
     public static void main(String[] args) {
         Character characters = new Character();
-        FileReading file = new FileReading();
+
         System.out.println(characters.getCharacterByName("monster"));
 
 

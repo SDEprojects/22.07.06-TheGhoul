@@ -16,7 +16,7 @@ class Command {
         }
     }
 
-    void executeCommand(String verb, String noun, Player player, ItemMenu gameItems, List<Location> rooms) {
+    void executeCommand(String verb, String noun, Character player, ItemMenu gameItems, List<Location> rooms) {
         if (verb.equals("look")) {
             System.out.println(gameItems.looking(noun, gameItems));
         } else if (verb.equals("get")) {

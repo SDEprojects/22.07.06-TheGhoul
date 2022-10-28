@@ -65,7 +65,6 @@ public class Location {
         Location room = null;
 
         List<Location> Locations = dataReader();
-        System.out.println(Locations);
         for (Location location : Locations) {
             if (location.getCurrent().equals(name)) {
                 return room = location;

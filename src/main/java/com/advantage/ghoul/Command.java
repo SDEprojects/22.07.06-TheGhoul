@@ -24,6 +24,8 @@ class Command {
             System.out.println(gameItems.looking(noun, gameItems));
         } else if (verb.equals("get")) {
             player.addItem(Location.currentRoom, noun, gameItems, rooms);
+        } else if(verb.equals("use")&& player.getInventory().contains(noun)){
+            player.useHealingPotion();
         } else if (verb.equals("drop")) {
             player.dropItem(noun, player, gameItems, rooms);
         } else if (verb.equals("check") && noun.equals("bag")) {

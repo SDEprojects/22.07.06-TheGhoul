@@ -20,8 +20,8 @@ public class NewGame {
     List<Location> rooms = movement.dataReader();
     private Command InputCommand = new Command();
     private String objectName;
-//    Character player = new Character("player", "this is a player", 100, 10);
-//    Character monster = new Character("monster", "this is a player", 100, 10);
+    Character player = new Character("player", "this is a player", 100, 10);
+    Character monster = new Character("monster", "this is a player", 100, 10);
 
     void gameLoop(boolean isRunning) {
         System.out.println("\n> Type 'help' for game instructions");
@@ -37,7 +37,9 @@ public class NewGame {
                 InputCommand.gameCommand(commandInput[0]);
             } else if (commandInput.length > 1 && verbs.contains(commandInput[0]) && (gameItems.itemList().contains(objectName))) {
                 InputCommand.executeCommand(commandInput[0], objectName, playerAbility, gameItems, rooms);
-            } else if (commandInput.length == 2 && verbForMoving.contains(commandInput[0]) && direction.contains((commandInput[1]))) {
+            } else if (commandInput.length > 1 && verbs.contains(commandInput[0]) && (gameItems.itemList().contains(objectName))) {
+                InputCommand.executeCommand(commandInput[0], objectName, playerAbility, gameItems, rooms);
+            }else if (commandInput.length == 2 && verbForMoving.contains(commandInput[0]) && direction.contains((commandInput[1]))) {
                 movement.moving(commandInput[1], rooms);
             } else {
                 System.out.println(Color.YELLOW + "Invalid input. Please enter the 'verb' + 'name'. Type help for checking the command" + Color.RESET);

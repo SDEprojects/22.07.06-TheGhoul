@@ -35,7 +35,10 @@ public class NewGame {
                 isRunning = true;
             } else if (commandInput.length == 1) {
                 InputCommand.gameCommand(commandInput[0]);
-            } else if (commandInput.length > 1 && verbs.contains(commandInput[0]) && (gameItems.itemList().contains(objectName))) {
+            }else if(commandInput[0].equals("attack")&&commandInput[1].equals("monster")){
+                player.attack(monster);
+            }
+            else if (commandInput.length > 1 && verbs.contains(commandInput[0]) && (gameItems.itemList().contains(objectName))) {
                 InputCommand.executeCommand(commandInput[0], objectName, playerAbility, gameItems, rooms);
             } else if (commandInput.length == 2 && verbForMoving.contains(commandInput[0]) && direction.contains((commandInput[1]))) {
                 movement.moving(commandInput[1], rooms);

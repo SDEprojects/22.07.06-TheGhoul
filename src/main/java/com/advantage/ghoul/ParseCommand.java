@@ -10,10 +10,10 @@ class ParseCommand {
     final List<String> lookCommand = new ArrayList<>(Arrays.asList("look", "show", "inspect"));
     final List<String> useCommand = new ArrayList<>(Arrays.asList("use", "utilize"));
     final List<String> dropCommand = new ArrayList<>(Arrays.asList("drop", "throw", "abandon"));
-    ;
     final List<String> movingCommand = new ArrayList<>(Arrays.asList("go", "moving", "move", "walk", "run", "turn"));
     final List<String> attackCommand = new ArrayList<>(Arrays.asList("attack", "fight"));
     final List<String> direction = new ArrayList<>(Arrays.asList("south", "north", "east", "west"));
+
 
     private final List<List> listCommand = new ArrayList<>(Arrays.asList(getCommand, checkCommand,
             lookCommand, useCommand, dropCommand, attackCommand));

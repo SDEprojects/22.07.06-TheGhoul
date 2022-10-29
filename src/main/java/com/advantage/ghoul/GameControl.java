@@ -32,12 +32,12 @@ public class GameControl {
 
     private void gameSummary() {
         InputStream summary = FileReading.getFileFromResourceAsStreamFortxt("gameSummary.txt");
-        FileReading.printInputStream(summary,false,Color.RED);
+        FileReading.printInputStream(summary,Color.RED);
     }
 
     private void display() {
         InputStream logo = FileReading.getFileFromResourceAsStreamFortxt("TheGhoul.txt");
-        FileReading.printInputStream(logo,false,Color.GREEN);
+        FileReading.printInputStream(logo,Color.GREEN);
         gameSummary();
     }
 

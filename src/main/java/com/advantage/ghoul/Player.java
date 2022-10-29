@@ -1,10 +1,7 @@
 package com.advantage.ghoul;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 class Player {
     private String name;
@@ -23,15 +20,14 @@ class Player {
     }
 
     void addItem(String roomName, String itemName, ItemMenu items, List<Location> rooms) {
-        int roomNumber=-1;
-
+        int roomNumber = -1;
         for (int i = 0; i < rooms.size(); i++) {
-            if (rooms.get(i).getCurrent().equals(roomName)&& rooms.get(i).getItem().equals(itemName)) {
-                roomNumber=i;
+            if (rooms.get(i).getCurrent().equals(roomName) && rooms.get(i).getItem().equals(itemName)) {
+                roomNumber = i;
             }
         }
         ItemMenu itemInRoom = items.getItemByName(itemName);
-        if (roomNumber==-1) {
+        if (roomNumber == -1) {
             System.out.println("There is no " + itemName + " in this area");
         } else {
             inventory.add(itemName);
@@ -41,34 +37,34 @@ class Player {
         }
     }
 
-    void dropItem(String itemName,Player player,ItemMenu items,List<Location> rooms) {
+    void dropItem(String itemName, Player player, ItemMenu items, List<Location> rooms) {
         for (int i = 0; i < player.getInventory().size(); i++) {
             if (player.getInventory().get(i).equals(itemName)) {
                 inventory.remove(itemName);
                 System.out.println("You drop " + itemName + " from your bag!");
                 items.setLocation(Location.currentRoom);
-            }else{
+            } else {
                 System.out.println("There is no " + itemName + " to drop from your bag");
             }
         }
     }
 
-    void checkInventory(){
+    void checkInventory() {
         getInventory();
-       if(getInventory().size()>0){
-           System.out.println("You have following items: " + getInventory() + ".");
-       }else {
-           System.out.println("You have nothing in your bag");
-       }
+        if (getInventory().size() > 0) {
+            System.out.println("You have following items: " + getInventory() + ".");
+        } else {
+            System.out.println("You have nothing in your bag");
+        }
     }
 
-    void useHealingPotion(){
-        if(inventory.contains("healing potion")){
-            if (getHp() == MAXHP){
+    void useHealingPotion() {
+        if (inventory.contains("healing potion")) {
+            if (getHp() == MAXHP) {
                 System.out.println("You are healthy. You do not need the healing potion.");
-            }else if(getHp()<MAXHP-5){
-                setHp(getHp()+5);
-            }else{
+            } else if (getHp() < MAXHP - 5) {
+                setHp(getHp() + 5);
+            } else {
                 setHp(MAXHP);
             }
 

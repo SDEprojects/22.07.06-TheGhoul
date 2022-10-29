@@ -24,7 +24,7 @@ class Command {
             System.out.println(gameItems.looking(noun, gameItems));
         } else if (verb.equals("get")) {
             player.addItem(Location.currentRoom, noun, gameItems, rooms);
-        } else if(verb.equals("use")&& player.getInventory().contains(noun)){
+        } else if(verb.equals("use") && player.getInventory().contains(noun)){
             player.useHealingPotion();
         } else if (verb.equals("drop")) {
             player.dropItem(noun, player, gameItems, rooms);
@@ -49,11 +49,11 @@ class Command {
     void help() {
         Console.clear();
         InputStream is = FileReading.getFileFromResourceAsStreamFortxt("help.txt");
-        FileReading.printInputStream(is, false, Color.RED);
+        FileReading.printInputStream(is, Color.RED);
     }
     void map(){
         Console.clear();
         InputStream is = FileReading.getFileFromResourceAsStreamFortxt("map.txt");
-        FileReading.printInputStream(is, false, Color.YELLOW);
+        FileReading.printInputStream(is, Color.YELLOW);
     }
 }

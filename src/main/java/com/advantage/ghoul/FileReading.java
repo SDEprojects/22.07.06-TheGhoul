@@ -1,14 +1,15 @@
 package com.advantage.ghoul;
 
-import com.apps.util.Console;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
+import java.util.stream.Collectors;
 
 class FileReading {
+    private JSONParser parser = new JSONParser();
+
     static InputStream getFileFromResourceAsStreamFortxt(String fileName) {
         ClassLoader classLoader = FileReading.class.getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(fileName);
@@ -19,25 +20,32 @@ class FileReading {
         }
     }
 
-    static void printInputStream(InputStream content, boolean delay, String color) {
-
+    static void printInputStream(InputStream content, String color) {
         System.out.println(color);
         try (InputStreamReader streamReader = new InputStreamReader(content, StandardCharsets.UTF_8);
              BufferedReader reader = new BufferedReader(streamReader)) {
             String line;
             while ((line = reader.readLine()) != null) {
-                if (delay) {
-                    System.out.println(line);
-                    Console.pause(800);
-
-                } else {
-                    System.out.println(line);
-                }
+                System.out.println(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             System.out.println(Color.RESET);
         }
+    }
+
+    public String dataReader(String filename) {
+        String data = "";
+        try {
+            InputStream fileData = FileReading.getFileFromResourceAsStreamFortxt(filename);
+            String result = new BufferedReader(new InputStreamReader(fileData))
+                    .lines().collect(Collectors.joining("\n"));
+            Object obj = parser.parse(result);
+            data = obj.toString();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return data;
     }
 }

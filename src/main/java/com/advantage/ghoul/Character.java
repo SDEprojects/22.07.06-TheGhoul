@@ -2,18 +2,10 @@ package com.advantage.ghoul;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class Character {
-
+class Character {
     private String name;
     private String description;
     private int hp;
@@ -23,19 +15,20 @@ public class Character {
     private int attackPoint;
     private String location;
     private String dialogue;
-    private JSONParser parser=new JSONParser();
     private ObjectMapper objectMapper = new ObjectMapper();
+    private FileReading file = new FileReading();
     private List<Character> listCharacter;
     private List<String> characterNameList = new ArrayList<>();
 
-    public void setHp(int hp) {
+    void setHp(int hp) {
         this.hp = hp;
     }
-    Character(){
+
+    Character() {
         super();
     }
 
-    Character(String name, String description, int hp, int attackPoint){
+    Character(String name, String description, int hp, int attackPoint) {
         this.name = name;
         this.description = description;
         this.hp = hp;
@@ -43,20 +36,12 @@ public class Character {
     }
 
     //business methods
-
-    public List<Character> dataReader() {
+    List<Character> dataReader() {
         try {
-            InputStream characterFile = FileReading.getFileFromResourceAsStreamFortxt("Character.txt");
-            String result = new BufferedReader(new InputStreamReader(characterFile))
-                    .lines().collect(Collectors.joining("\n"));
-            Object obj = parser.parse(result);
-            String data = obj.toString();
-            listCharacter = objectMapper.readValue(data, new TypeReference<>() {
+            String characterData = file.dataReader("Character.txt");
+            listCharacter = objectMapper.readValue(characterData, new TypeReference<>() {
             });
-
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
             e.printStackTrace();
         }
         return listCharacter;
@@ -64,7 +49,6 @@ public class Character {
 
     Character getCharacterByName(String name) {
         Character character = null;
-
         List<Character> characters = dataReader();
         for (Character npc : characters) {
             if (npc.getName().equals(name)) {
@@ -74,45 +58,39 @@ public class Character {
         return character;
     }
 
+    void attack(Character opponent) {
 
-
-    void attack(Character opponent){
-
-            int attackPoint = (int)(Math.random()* getAttackPoint());
-            if (attackPoint==0){
-                System.out.println(getName()+" missed. No damage caused.");
-            }else{
-                System.out.println(getName()+" caused " + attackPoint + " damages" );
-            }
-
-            monsterHP(attackPoint, opponent);
-
+        int attackPoint = (int) (Math.random() * getAttackPoint());
+        if (attackPoint == 0) {
+            System.out.println(getName() + " missed. No damage caused.");
+        } else {
+            System.out.println(getName() + " caused " + attackPoint + " damages");
+        }
+        monsterHP(attackPoint, opponent);
     }
 
-    void monsterHP(int damage, Character monster){
-        monster.hp-=damage;
-        if(monster.hp <1){
+    void monsterHP(int damage, Character monster) {
+        monster.hp -= damage;
+        if (monster.hp < 1) {
             System.out.println(this.getName() + " win");
 
-            if(monster.getName().equals("monster")){
+            if (monster.getName().equals("monster")) {
                 System.out.println("Monster dropped the library key");
             }
-        }else{
+        } else {
             monster.attack(this);
         }
     }
 
-
     void addItem(String roomName, String itemName, ItemMenu items, List<Location> rooms) {
-        int roomNumber=-1;
-
+        int roomNumber = -1;
         for (int i = 0; i < rooms.size(); i++) {
-            if (rooms.get(i).getCurrent().equals(roomName)&& rooms.get(i).getItem().equals(itemName)) {
-                roomNumber=i;
+            if (rooms.get(i).getCurrent().equals(roomName) && rooms.get(i).getItem().equals(itemName)) {
+                roomNumber = i;
             }
         }
         ItemMenu itemInRoom = items.getItemByName(itemName);
-        if (roomNumber==-1) {
+        if (roomNumber == -1) {
             System.out.println("There is no " + itemName + " in this area");
         } else {
             inventory.add(itemName);
@@ -122,40 +100,39 @@ public class Character {
         }
     }
 
-    void dropItem(String itemName,Character player,ItemMenu items,List<Location> rooms) {
+    void dropItem(String itemName, Character player, ItemMenu items, List<Location> rooms) {
         for (int i = 0; i < player.getInventory().size(); i++) {
             if (player.getInventory().get(i).equals(itemName)) {
                 inventory.remove(itemName);
                 System.out.println("You drop " + itemName + " from your bag!");
                 items.setLocation(Location.currentRoom);
-            }else{
+            } else {
                 System.out.println("There is no " + itemName + " to drop from your bag");
             }
         }
     }
 
-    void checkInventory(){
+    void checkInventory() {
         getInventory();
-        if(getInventory().size()>0){
+        if (getInventory().size() > 0) {
             System.out.println("You have following items: " + getInventory() + ".");
-        }else {
+        } else {
             System.out.println("You have nothing in your bag");
         }
     }
 
-    void useHealingPotion(){
+    void useHealingPotion() {
         int formerHp = getHp();
-        if(inventory.contains("healing potion")){
-            if (getHp() == MAXHP){
+        if (inventory.contains("healing potion")) {
+            if (getHp() == MAXHP) {
                 System.out.println("You are healthy. You do not need the healing potion.");
-            }else if(getHp()<MAXHP-5){
-                setHp(getHp()+5);
+            } else if (getHp() < MAXHP - 5) {
+                setHp(getHp() + 5);
                 System.out.println("Your Hp went from " + formerHp + " to " + getHp());
-            }else{
+            } else {
                 setHp(MAXHP);
                 System.out.println("You have been restore to complete health.");
             }
-
         }
 
         getInventory().remove("healing potion");
@@ -194,9 +171,9 @@ public class Character {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Character: Name= " + getName() + " Description= " + getDescription() + " hp= " + getHp() +
-        " hp= " + getXp();
+                " hp= " + getXp();
     }
 
     public static void main(String[] args) {
@@ -205,12 +182,10 @@ public class Character {
         System.out.println(characters.getCharacterByName("monster"));
 
 
-
-        Character player = new Character("Vanessa","Princess", 100, 10);
+        Character player = new Character("Vanessa", "Princess", 100, 10);
 
         Character enemy = new Character("Ghoul", " Evil", 10, 2);
         player.attack(enemy);
-
 
 
     }

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class NewGame {
+class NewGame {
     static boolean skip = false;
     private Character playerAbility = new Character();
     private Scanner inputValue = new Scanner(System.in);
@@ -29,7 +29,7 @@ public class NewGame {
 
     void gameLoop(boolean isRunning) {
         while (!isRunning) {
-            System.out.println("\n> Type 'help' for game instructions");
+            System.out.println(Color.YELLOW+"\n> Type 'help' for game instructions"+Color.RESET);
             System.out.println("\nWhat is your next command:");
             String wordInput = inputValue.nextLine().trim();
             String[] commandInput = wordInput.toLowerCase().split(delimiter);

@@ -8,6 +8,8 @@ import java.util.List;
 
 class Command {
     ParseCommand check = new ParseCommand();
+    MusicPlayer music = new MusicPlayer();
+    ParseCommand musicCheck=new ParseCommand();
 
     String commandFilter(String[] command) {
         if (command.length == 3) {
@@ -41,6 +43,8 @@ class Command {
             help();
         } else if (command.equals("map")) {
             map();
+        } else if(musicCheck.musicControl.contains(command)){
+            music.runMusic(command);
         } else {
             System.out.println("invalid input");
         }

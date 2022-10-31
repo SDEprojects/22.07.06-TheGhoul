@@ -93,7 +93,7 @@ class Location {
                 }
             }
         }
-        System.out.println(getLocationByName(Location.currentRoom).getDescription());
+        System.out.println(Color.GREEN+ getLocationByName(Location.currentRoom).getDescription()+Color.RESET);
     }
 
     public String getCurrent() {

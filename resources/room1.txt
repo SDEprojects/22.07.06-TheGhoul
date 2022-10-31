@@ -43,7 +43,7 @@
     "item": "library key",
     "description": "You are in the BASEMENT.
     This room is filled with ornaments and tables.
-    There is a monster sleeping and blocking the path to the LIBRARY.
+    There is a \"monster\" sleeping and blocking the path to the LIBRARY.
     It looks like it's holding something...
 
     ====================================================================
@@ -83,7 +83,7 @@
     ...You can hear a low crunching sound.
     There is very little light in here, but it's enough for you to see a silhouette
     in the left corner of the room...
-    IT'S THE GHOUL!
+    IT'S THE \"GHOUL\"!
 
     ====================================================================
 

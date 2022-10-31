@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class NewGame {
+class NewGame {
     static boolean skip = false;
     private Character playerAbility = new Character();
     private Scanner inputValue = new Scanner(System.in);

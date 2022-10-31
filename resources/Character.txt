@@ -3,7 +3,7 @@
     "name": "player",
     "description":"bravest knight",
     "location": "outside",
-    "hp": "10",
+    "hp": "12",
     "attackPoint": "4"
     "dialogue": "RRRRR"
 },
@@ -11,8 +11,8 @@
     "name": "monster",
     "description":"Monster dropped the library key",
     "location": "basement",
-    "hp": "5",
-    "attackPoint": "2"
+    "hp": "10",
+    "attackPoint": "2",
     "dialogue": "RRRRR"
 },
 {
@@ -20,7 +20,7 @@
     "description": "the Ghoul",
     "location": "dungeon",
     "hp": "20",
-    "attackPoint": "5",
+    "attackPoint": "6",
     "dialogue": "RRRRR"
 },
 {

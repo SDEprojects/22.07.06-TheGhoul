@@ -28,11 +28,10 @@ public class NewGame {
     Character king = playerAbility.createCharacter(playerAbility.getCharacterByName("king"));
 
     void gameLoop(boolean isRunning) {
-        System.out.println("\n> Type 'help' for game instructions");
         while (!isRunning) {
-            System.out.println("What is your next command:");
+            System.out.println("\n> Type 'help' for game instructions");
+            System.out.println("\nWhat is your next command:");
             String wordInput = inputValue.nextLine().trim();
-            Console.clear();
             String[] commandInput = wordInput.toLowerCase().split(delimiter);
             objectName = InputCommand.commandFilter(commandInput);
             boolean testCommand=commandInput.length > 1 && verbs.contains(commandInput[0]);
@@ -45,6 +44,7 @@ public class NewGame {
             } else if(testCommand && (monsterList.contains(objectName))){
                 InputCommand.fightCommand(commandInput[0],objectName,playerAbility,player,monster,ghoul,king,rooms,monsterList);
             } else if (commandInput.length == 2 && verbForMoving.contains(commandInput[0]) && direction.contains((commandInput[1]))) {
+                Console.clear();
                 movement.moving(commandInput[1], rooms);
             } else {
                 System.out.println(Color.YELLOW + "Invalid input. Please enter the 'verb' + 'name'. Type help for checking the command" + Color.RESET);

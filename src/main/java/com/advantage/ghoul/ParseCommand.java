@@ -14,7 +14,6 @@ class ParseCommand {
     final List<String> attackCommand = new ArrayList<>(Arrays.asList("attack", "fight"));
     final List<String> direction = new ArrayList<>(Arrays.asList("south", "north", "east", "west"));
 
-
     private final List<List> listCommand = new ArrayList<>(Arrays.asList(getCommand, checkCommand,
             lookCommand, useCommand, dropCommand, attackCommand));
 

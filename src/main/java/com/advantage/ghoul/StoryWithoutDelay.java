@@ -9,9 +9,6 @@ class StoryWithoutDelay implements Runnable {
     @Override
     public void run() {
         String input = skip.nextLine();
-        if (input.length() > 0) {
-            Console.clear();
-            NewGame.skip = true;
-        }
+        NewGame.skip = true;
     }
 }

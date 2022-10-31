@@ -34,5 +34,9 @@
     {"name": "protection stone",
      "description": "The protection stone protects the land from monsters and evil spirits ",
      "location": "dungeon"
-    }
+    },
+    {"name": "bag",
+     "description": "The bag player carry",
+     "location": "inventory"
+     }
 ]

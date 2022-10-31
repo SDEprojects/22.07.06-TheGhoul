@@ -1,7 +1,9 @@
 package com.advantage.ghoul;
 
+import com.apps.util.Console;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -10,7 +12,7 @@ class Character {
     private String description;
     private int hp;
     private List<String> inventory = new ArrayList<>();
-    private int MAXHP = 10;
+    private final int MAXHP = 12;
     private int xp = 1;
     private int attackPoint;
     private String location;
@@ -18,8 +20,6 @@ class Character {
     private ObjectMapper objectMapper = new ObjectMapper();
     private FileReading file = new FileReading();
     private List<Character> listCharacter;
-    private List<String> characterNameList = new ArrayList<>();
-
 
     void setHp(int hp) {
         this.hp = hp;
@@ -29,11 +29,12 @@ class Character {
         super();
     }
 
-    Character(String name, String description, int hp, int attackPoint) {
+    Character(String name, String description, int hp, int attackPoint,String location) {
         this.name = name;
         this.description = description;
         this.hp = hp;
         this.attackPoint = attackPoint;
+        this.location=location;
     }
 
     //business methods
@@ -47,6 +48,7 @@ class Character {
         }
         return listCharacter;
     }
+
     Character getCharacterByName(String name) {
         Character character = null;
         List<Character> characters = dataReader();
@@ -58,58 +60,63 @@ class Character {
         return character;
     }
 
-    LinkedList<String> npcNameList(){
-        LinkedList<String> nameList=new LinkedList<>();
+    LinkedList<String> npcNameList() {
+        LinkedList<String> nameList = new LinkedList<>();
         List<Character> characters = dataReader();
-        for(int i=0;i< dataReader().size()-1;i++){
-                nameList.add(characters.get(i+1).getName());
+        for (int i = 0; i < dataReader().size() - 1; i++) {
+            nameList.add(characters.get(i + 1).getName());
         }
         return nameList;
     }
 
-    Character createCharacter(Character character){
-        String name=character.getName();
-        Character npcInfor=character.getCharacterByName(name);
-        String npcName=npcInfor.getName();
-        String npcDescription=npcInfor.getDescription();
-        int npcMaxHP= npcInfor.getHp();
-        int npcAttackPoint=npcInfor.getAttackPoint();
-        Character npcCharacter=new Character(npcName,npcDescription,npcMaxHP,npcAttackPoint);
+    Character createCharacter(Character character) {
+        String name = character.getName();
+        Character npcInfor = character.getCharacterByName(name);
+        String npcName = npcInfor.getName();
+        String npcDescription = npcInfor.getDescription();
+        String npcLocation=npcInfor.getLocation();
+        int npcMaxHP = npcInfor.getHp();
+        int npcAttackPoint = npcInfor.getAttackPoint();
+        Character npcCharacter = new Character(npcName, npcDescription, npcMaxHP, npcAttackPoint,npcLocation);
         return npcCharacter;
     }
-    int attackEngine(int attackPoint){
-        double chance=Math.random();
-        if(chance<0.2){
+
+    int attackEngine(int attackPoint) {
+        double chance = Math.random();
+        if (chance < 0.2) {
             return 0;
-        }else if(chance<0.9){
+        } else if (chance < 0.8) {
             return attackPoint;
-        }else{
-            return 2*attackPoint;
+        } else {
+            return 2 * attackPoint;
         }
     }
 
-    void attack(Character player, Character enemy,LinkedList<String> monsterList) {
+    void attack(Character player, Character enemy, LinkedList<String> monsterList,Character playerAbility) {
+        Console.pause(500);
         int attackPoint = player.getAttackPoint();
-        int fightPower=player.attackEngine(attackPoint);
-        int enemyCurrentHP=enemy.getHp()-fightPower;
-        if(enemyCurrentHP<0){
-            enemyCurrentHP=0;
+        int fightPower = player.attackEngine(attackPoint);
+        if (player.getName().contains("player")&&playerAbility.getInventory().contains("divine sword")){
+            fightPower=fightPower+10;
+        }
+        int enemyCurrentHP = enemy.getHp() - fightPower;
+        if (enemyCurrentHP < 0) {
+            enemyCurrentHP = 0;
         }
         if (fightPower == 0) {
             System.out.println(player.getName() + " missed. No damage caused.");
-        } else if(fightPower>attackPoint){
-            System.out.println(Color.RED+player.getName() + " caused " + fightPower + " Critical damages. "+enemy.getName()
-                    +" current HP is "+enemyCurrentHP+Color.RESET);
+        } else if (fightPower > attackPoint) {
+            System.out.println(Color.RED + player.getName() + " caused " + fightPower + " Critical damages. " + enemy.getName()
+                    + " current HP is " + enemyCurrentHP + Color.RESET);
+        } else {
+            System.out.println(player.getName() + " caused " + attackPoint + " damages. " + enemy.getName()
+                    + " current HP is " + enemyCurrentHP);
         }
-        else {
-            System.out.println(player.getName() + " caused " + attackPoint + " damages. "+enemy.getName()
-                    +" current HP is "+enemyCurrentHP);
-        }
-        monsterHP(attackPoint, enemy, player,monsterList);
+        monsterHP(fightPower, enemy, player, monsterList,playerAbility);
     }
 
-    void monsterHP(int damage, Character enemy, Character player,LinkedList<String> monsterList) {
-        int monsterCurrentHp=enemy.getHp();
+    void monsterHP(int damage, Character enemy, Character player, LinkedList<String> monsterList,Character playerAbility) {
+        int monsterCurrentHp = enemy.getHp();
         monsterCurrentHp -= damage;
         enemy.setHp(monsterCurrentHp);
         if (monsterCurrentHp < 1) {
@@ -117,18 +124,17 @@ class Character {
             if (enemy.getName().equals("monster")) {
                 System.out.println("Monster dropped the library key");
                 monsterList.remove("monster");
-            }else if(enemy.getName().equals("ghoul")){
+            } else if (enemy.getName().equals("ghoul")) {
                 System.out.println("Ghoul dropped the Life Stone");
                 monsterList.remove("ghoul");
-            }else if(enemy.getName().equals("king")){
+            } else if (enemy.getName().equals("king")) {
                 System.out.println("You win the game");
                 monsterList.remove("king");
-            }else{
-                System.out.println("You lose the game, Do you want to try again");
-                System.exit(0);
+            } else if(enemy.getName().equals("player")){
+                GameControl.loseGame();
             }
         } else {
-            enemy.attack(enemy, player,monsterList);
+            enemy.attack(enemy, player, monsterList,playerAbility);
         }
     }
 
@@ -165,7 +171,7 @@ class Character {
     void checkInventory() {
         getInventory();
         if (getInventory().size() > 0) {
-            System.out.println("You have following items: " + getInventory() + ".");
+            System.out.println("You have following items: "+Color.YELLOW+ getInventory() + "."+Color.RESET);
         } else {
             System.out.println("You have nothing in your bag");
         }
@@ -176,15 +182,14 @@ class Character {
         if (inventory.contains("healing potion")) {
             if (player.getHp() == MAXHP) {
                 System.out.println("You are healthy. You do not need the healing potion.");
-            } else if (player.getHp()< MAXHP - 5) {
+            } else if (player.getHp() < MAXHP - 5) {
                 player.setHp(player.getHp() + 5);
                 System.out.println("Your Hp went from " + formerHp + " to " + player.getHp());
             } else {
                 setHp(MAXHP);
-                System.out.println("You have been restore to complete health. (Your current HP is"+ player.getHp()+" .");
+                System.out.println("You have been restore to complete health. (Your current HP is " + MAXHP + " ).");
             }
         }
-
         getInventory().remove("healing potion");
     }
 
@@ -223,29 +228,6 @@ class Character {
     @Override
     public String toString() {
         return "Character: Name= " + getName() + " Description= " + getDescription() + " hp= " + getHp() +
-                " hp= " + getXp();
+                " xp= " + getXp()+ " location= "+getLocation();
     }
-
-    public static void main(String[] args) {
-        Character characters = new Character();
-//
-//        System.out.println(characters.getCharacterByName("monster").getName());
-//        System.out.println(characters.getCharacterByName("monster").getDescription());;
-
-//        Character player = new Character("Vanessa", "Princess", 100, 10);
-//
-//        Character enemy = new Character("Ghoul", " Evil", 10, 2);
-//        player.attack(enemy);
-
-
-    }
-//    Character createCharacter(Character npca,String npc){
-//        Character npcInfor=npca.getCharacterByName(npc);
-//        String npcName=npcInfor.getName();
-//        String npcDescription=npcInfor.getDescription();
-//        int npcMaxHP= npcInfor.getHp();
-//        int npcAttackPoint=npcInfor.getAttackPoint();
-//        Character npcCharacter=new Character(npcName,npcDescription,npcMaxHP,npcAttackPoint);
-//        return npcCharacter;
-//    }
 }

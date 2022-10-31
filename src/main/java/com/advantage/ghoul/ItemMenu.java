@@ -1,6 +1,5 @@
 package com.advantage.ghoul;
 
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.*;
@@ -74,7 +73,7 @@ class ItemMenu {
         return location;
     }
 
-    public void setLocation(String location) {
+    void setLocation(String location) {
         this.location = location;
     }
 

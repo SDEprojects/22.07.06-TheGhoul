@@ -2,17 +2,11 @@ package com.advantage.ghoul;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Collectors;
 
-
-public class Location {
+class Location {
     static String currentRoom = "outside";
     private String current;
     private String north;
@@ -126,7 +120,7 @@ public class Location {
         return item;
     }
 
-    public void setItem(String item) {
+    void setItem(String item) {
         this.item = item;
     }
 
@@ -139,5 +133,4 @@ public class Location {
         return "Room: current Room=" + getCurrent() + ", north=" + getNorth() + ", south=" + getSouth() + ", west=" + getWest()
                 + ", east=" + getEast() + ", item=" + getItem() + ", description=" + getDescription();
     }
-
 }

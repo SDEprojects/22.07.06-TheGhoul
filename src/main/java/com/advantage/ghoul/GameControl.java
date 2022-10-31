@@ -16,7 +16,7 @@ public class GameControl {
     private GameControl() {
         Console.clear();
         display();
-//        musichandle.play();
+        musichandle.play();
         startGame();
     }
 

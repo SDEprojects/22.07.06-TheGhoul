@@ -26,11 +26,11 @@ public class Location {
     private List<String> locationNameList = new ArrayList<>();
     private FileReading file = new FileReading();
 
-    public Location() {
+    Location() {
         super();
     }
 
-    public Location(String current, String north, String south, String west, String east, String item, String description) {
+    Location(String current, String north, String south, String west, String east, String item, String description) {
         this.current = current;
         this.north = north;
         this.south = south;

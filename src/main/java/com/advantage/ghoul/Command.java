@@ -3,6 +3,7 @@ package com.advantage.ghoul;
 import com.apps.util.Console;
 
 import java.io.InputStream;
+import java.util.LinkedList;
 import java.util.List;
 
 class Command {
@@ -18,18 +19,18 @@ class Command {
         }
     }
 
-    void executeCommand(String verb, String noun, Character player, ItemMenu gameItems, List<Location> rooms) {
+    void executeCommand(String verb, String noun, Character playerAbility, ItemMenu gameItems, List<Location> rooms,Character player) {
         verb=check.verifyAction(verb);
         if (verb.equals("look")) {
             System.out.println(gameItems.looking(noun, gameItems));
         } else if (verb.equals("get")) {
-            player.addItem(Location.currentRoom, noun, gameItems, rooms);
-        } else if(verb.equals("use") && player.getInventory().contains(noun)){
-            player.useHealingPotion();
+            playerAbility.addItem(Location.currentRoom, noun, gameItems, rooms);
+        } else if(verb.equals("use") && playerAbility.getInventory().contains(noun)){
+            playerAbility.useHealingPotion(player);
         } else if (verb.equals("drop")) {
-            player.dropItem(noun, player, gameItems, rooms);
+            playerAbility.dropItem(noun, playerAbility, gameItems, rooms);
         } else if (verb.equals("check") && noun.equals("bag")) {
-            player.checkInventory();
+            playerAbility.checkInventory();
         } else {
             System.out.println("There is no " + noun + " in this room");
         }
@@ -43,6 +44,19 @@ class Command {
         }
         else {
             System.out.println("invalid input");
+        }
+    }
+
+    void fightCommand(String verb, String noun, Character playerAbility, Character player,
+                      Character monster, Character ghoul, Character king, List<Location> rooms, LinkedList<String> monsterList){
+        if(noun.equals("monster")&&Location.currentRoom.equals("basement")) {
+            playerAbility.attack(player, monster,monsterList);
+        }else if(noun.equals("ghoul")&&Location.currentRoom.equals("dungeon")){
+            playerAbility.attack(player, ghoul,monsterList);
+        }else if(noun.equals("king")&&Location.currentRoom.equals("dungeon")){
+            playerAbility.attack(player, king,monsterList);
+        }else{
+            System.out.println("Invalid input");
         }
     }
 

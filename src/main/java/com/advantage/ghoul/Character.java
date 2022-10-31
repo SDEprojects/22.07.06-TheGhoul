@@ -10,7 +10,7 @@ class Character {
     private String description;
     private int hp;
     private List<String> inventory = new ArrayList<>();
-    private int MAXHP = 30;
+    private int MAXHP = 10;
     private int xp = 1;
     private int attackPoint;
     private String location;
@@ -19,6 +19,7 @@ class Character {
     private FileReading file = new FileReading();
     private List<Character> listCharacter;
     private List<String> characterNameList = new ArrayList<>();
+
 
     void setHp(int hp) {
         this.hp = hp;
@@ -46,7 +47,6 @@ class Character {
         }
         return listCharacter;
     }
-
     Character getCharacterByName(String name) {
         Character character = null;
         List<Character> characters = dataReader();
@@ -58,27 +58,77 @@ class Character {
         return character;
     }
 
-    void attack(Character opponent) {
-
-        int attackPoint = (int) (Math.random() * getAttackPoint());
-        if (attackPoint == 0) {
-            System.out.println(getName() + " missed. No damage caused.");
-        } else {
-            System.out.println(getName() + " caused " + attackPoint + " damages");
+    LinkedList<String> npcNameList(){
+        LinkedList<String> nameList=new LinkedList<>();
+        List<Character> characters = dataReader();
+        for(int i=0;i< dataReader().size()-1;i++){
+                nameList.add(characters.get(i+1).getName());
         }
-        monsterHP(attackPoint, opponent);
+        return nameList;
     }
 
-    void monsterHP(int damage, Character monster) {
-        monster.hp -= damage;
-        if (monster.hp < 1) {
-            System.out.println(this.getName() + " win");
+    Character createCharacter(Character character){
+        String name=character.getName();
+        Character npcInfor=character.getCharacterByName(name);
+        String npcName=npcInfor.getName();
+        String npcDescription=npcInfor.getDescription();
+        int npcMaxHP= npcInfor.getHp();
+        int npcAttackPoint=npcInfor.getAttackPoint();
+        Character npcCharacter=new Character(npcName,npcDescription,npcMaxHP,npcAttackPoint);
+        return npcCharacter;
+    }
+    int attackEngine(int attackPoint){
+        double chance=Math.random();
+        if(chance<0.2){
+            return 0;
+        }else if(chance<0.9){
+            return attackPoint;
+        }else{
+            return 2*attackPoint;
+        }
+    }
 
-            if (monster.getName().equals("monster")) {
+    void attack(Character player, Character enemy,LinkedList<String> monsterList) {
+        int attackPoint = player.getAttackPoint();
+        int fightPower=player.attackEngine(attackPoint);
+        int enemyCurrentHP=enemy.getHp()-fightPower;
+        if(enemyCurrentHP<0){
+            enemyCurrentHP=0;
+        }
+        if (fightPower == 0) {
+            System.out.println(player.getName() + " missed. No damage caused.");
+        } else if(fightPower>attackPoint){
+            System.out.println(Color.RED+player.getName() + " caused " + fightPower + " Critical damages. "+enemy.getName()
+                    +" current HP is "+enemyCurrentHP+Color.RESET);
+        }
+        else {
+            System.out.println(player.getName() + " caused " + attackPoint + " damages. "+enemy.getName()
+                    +" current HP is "+enemyCurrentHP);
+        }
+        monsterHP(attackPoint, enemy, player,monsterList);
+    }
+
+    void monsterHP(int damage, Character enemy, Character player,LinkedList<String> monsterList) {
+        int monsterCurrentHp=enemy.getHp();
+        monsterCurrentHp -= damage;
+        enemy.setHp(monsterCurrentHp);
+        if (monsterCurrentHp < 1) {
+            System.out.println(player.getName() + " win");
+            if (enemy.getName().equals("monster")) {
                 System.out.println("Monster dropped the library key");
+                monsterList.remove("monster");
+            }else if(enemy.getName().equals("ghoul")){
+                System.out.println("Ghoul dropped the Life Stone");
+                monsterList.remove("ghoul");
+            }else if(enemy.getName().equals("king")){
+                System.out.println("You win the game");
+                monsterList.remove("king");
+            }else{
+                System.out.println("You lose the game, Do you want to try again");
+                System.exit(0);
             }
         } else {
-            monster.attack(this);
+            enemy.attack(enemy, player,monsterList);
         }
     }
 
@@ -121,17 +171,17 @@ class Character {
         }
     }
 
-    void useHealingPotion() {
-        int formerHp = getHp();
+    void useHealingPotion(Character player) {
+        int formerHp = player.getHp();
         if (inventory.contains("healing potion")) {
-            if (getHp() == MAXHP) {
+            if (player.getHp() == MAXHP) {
                 System.out.println("You are healthy. You do not need the healing potion.");
-            } else if (getHp() < MAXHP - 5) {
-                setHp(getHp() + 5);
-                System.out.println("Your Hp went from " + formerHp + " to " + getHp());
+            } else if (player.getHp()< MAXHP - 5) {
+                player.setHp(player.getHp() + 5);
+                System.out.println("Your Hp went from " + formerHp + " to " + player.getHp());
             } else {
                 setHp(MAXHP);
-                System.out.println("You have been restore to complete health.");
+                System.out.println("You have been restore to complete health. (Your current HP is"+ player.getHp()+" .");
             }
         }
 
@@ -178,15 +228,24 @@ class Character {
 
     public static void main(String[] args) {
         Character characters = new Character();
+//
+//        System.out.println(characters.getCharacterByName("monster").getName());
+//        System.out.println(characters.getCharacterByName("monster").getDescription());;
 
-        System.out.println(characters.getCharacterByName("monster"));
-
-
-        Character player = new Character("Vanessa", "Princess", 100, 10);
-
-        Character enemy = new Character("Ghoul", " Evil", 10, 2);
-        player.attack(enemy);
+//        Character player = new Character("Vanessa", "Princess", 100, 10);
+//
+//        Character enemy = new Character("Ghoul", " Evil", 10, 2);
+//        player.attack(enemy);
 
 
     }
+//    Character createCharacter(Character npca,String npc){
+//        Character npcInfor=npca.getCharacterByName(npc);
+//        String npcName=npcInfor.getName();
+//        String npcDescription=npcInfor.getDescription();
+//        int npcMaxHP= npcInfor.getHp();
+//        int npcAttackPoint=npcInfor.getAttackPoint();
+//        Character npcCharacter=new Character(npcName,npcDescription,npcMaxHP,npcAttackPoint);
+//        return npcCharacter;
+//    }
 }

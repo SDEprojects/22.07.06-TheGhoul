@@ -1,6 +1,10 @@
 package com.advantage.ghoul;
 
+
+import com.advantage.ghoul.app.MusicHandler;
+import com.advantage.ghoul.app.MusicPlayer;
 import com.apps.util.Console;
+
 
 import java.io.*;
 import java.util.Scanner;
@@ -9,8 +13,13 @@ public class GameControl {
     private static final GameControl startGame = new GameControl();
     private Scanner scanner = new Scanner(System.in);
     private final NewGame newGame = new NewGame();
+    //MusicPlayer music = new MusicPlayer();
+    //MusicHandler musichandle = new MusicHandler();
 
     private GameControl() {
+
+        //musichandle.playIntroMusic();
+        //music.runMusic();
         Console.clear();
         display();
         startGame();
@@ -41,6 +50,7 @@ public class GameControl {
         FileReading.printInputStream(logo, Color.GREEN);
         gameSummary();
     }
+
 
     static void loseGame() {
         InputStream logo = FileReading.getFileFromResourceAsStreamFortxt("end.txt");

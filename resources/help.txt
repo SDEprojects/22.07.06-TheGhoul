@@ -1,13 +1,15 @@
 =========================================================
 One Command word
 Type "quit" for existing the game
-Type "save" for saving the game
+Type "map"  for opening the whole game map
 =========================================================
 Two Command words (Verb+Noun)
-"check" and "bag" for open item list
-"Look" and "item's name" for detail information of the items
-"go" and "direction" for moving different room, direction will be north,south,east and west
-"get" and "item's name" for put this item to the bag
-"use" and "item's name" for using the item
-"open" and "map" for checking the current position
+1. "check" and "bag" for checking inventory  (You can use check, inspect, or inventory as verb)
+2. "Look" and "item's name" for detail information of the items (You can use look, show)
+3. "go" and "direction" for moving different room, direction will be north,south,east and west
+     ( You can use "go","moving","move","walk","run","turn")
+4. "get" and "item's name" for put this item to the bag (You can use "get", "pick", "grab", "take")
+5. "use" and "item's name" for using the item (You can use "use","utilize")
+6. "drop" and "item's name" for droping the item from your bag if you have (You can use "drop", "throw", "abandon")
+6. "attack" and "monster's name" for attack current room monster
 =========================================================

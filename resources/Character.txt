@@ -1,0 +1,34 @@
+[
+{
+    "name": "player",
+    "description":"bravest knight",
+    "location": "outside",
+    "hp": "12",
+    "attackPoint": "4"
+    "dialogue": "RRRRR"
+},
+{
+    "name": "monster",
+    "description":"Monster dropped the library key",
+    "location": "basement",
+    "hp": "10",
+    "attackPoint": "2",
+    "dialogue": "RRRRR"
+},
+{
+    "name": "ghoul",
+    "description": "the Ghoul",
+    "location": "dungeon",
+    "hp": "20",
+    "attackPoint": "6",
+    "dialogue": "RRRRR"
+},
+{
+    "name": "king",
+    "description": "the king",
+    "location": "dungeon",
+    "hp": "15",
+    "attackPoint": "4",
+    "dialogue": "Oh noooo!"
+}
+]

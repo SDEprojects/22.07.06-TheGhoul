@@ -3,9 +3,9 @@ package com.advantage.ghoul;
 import javazoom.jl.player.Player;
 
 import java.io.BufferedInputStream;
-import java.io.FileInputStream;
+import java.io.InputStream;
 
-class MusicHandler {
+public class MusicHandler {
 
     private String fileName;
     private Player player;
@@ -29,14 +29,14 @@ class MusicHandler {
             player.close();
     }
 
-    void play() {
+    public void play() {
         try {
-            FileInputStream inputStream = new FileInputStream(fileName);
+            ClassLoader classLoader = FileReading.class.getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("music/Intro.mp3");
             BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
             player = new Player(bufferedInputStream);
-            //music will not loop
         } catch (Exception e) {
-            System.out.println("Problem playing " + fileName);
+            System.out.println("Music File can not find " );
             System.out.println(e);
         }
 
@@ -52,8 +52,8 @@ class MusicHandler {
     }
 
     //-----plays music-----
-    void playIntroMusic() {
-        MusicHandler introMusic = new MusicHandler("resources/music/Intro.mp3");
+    public void playIntroMusic() {
+        MusicHandler introMusic = new MusicHandler("music/Intro.mp3");
         introMusic.play();
 //        String input = scanner.nextLine();
 //        input = input.toLowerCase();

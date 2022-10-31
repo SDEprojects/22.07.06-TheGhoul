@@ -122,10 +122,10 @@ class Character {
         if (monsterCurrentHp < 1) {
             System.out.println(player.getName() + " win");
             if (enemy.getName().equals("monster")) {
-                System.out.println("Monster dropped the library key");
+                System.out.println("\nMonster dropped the"+Color.GREEN+" \"library key\"."+Color.RESET);
                 monsterList.remove("monster");
             } else if (enemy.getName().equals("ghoul")) {
-                System.out.println("Ghoul dropped the Life Stone");
+                System.out.println("\nGhoul dropped the" +Color.GREEN+" \"Life Stone\"."+Color.RESET);
                 monsterList.remove("ghoul");
             } else if (enemy.getName().equals("king")) {
                 System.out.println("You win the game");
@@ -160,10 +160,10 @@ class Character {
         for (int i = 0; i < player.getInventory().size(); i++) {
             if (player.getInventory().get(i).equals(itemName)) {
                 inventory.remove(itemName);
-                System.out.println("You drop " + itemName + " from your bag!");
+                System.out.println("\nYou drop " +Color.RED+ itemName +Color.RESET + " from your bag!");
                 items.setLocation(Location.currentRoom);
             } else {
-                System.out.println("There is no " + itemName + " to drop from your bag");
+                System.out.println("\nThere is no " + itemName + " to drop from your bag");
             }
         }
     }

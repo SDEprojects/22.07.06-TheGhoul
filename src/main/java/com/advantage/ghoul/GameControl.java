@@ -11,12 +11,12 @@ public class GameControl {
     private static final GameControl startGame = new GameControl();
     private Scanner scanner = new Scanner(System.in);
     private final NewGame newGame = new NewGame();
-//    MusicHandler musichandle = new MusicHandler();
+    MusicHandler musichandle = new MusicHandler();
 
     private GameControl() {
         Console.clear();
         display();
-//        musichandle.playIntroMusic();
+//        musichandle.play();
         startGame();
     }
 
